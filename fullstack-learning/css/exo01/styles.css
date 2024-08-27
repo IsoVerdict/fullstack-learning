@@ -1,0 +1,34 @@
+h1 {
+    color: red;               /* changer la couleur du texte */
+  }
+
+  p, li {
+    color: green;
+  }
+
+  li {
+    list-style-type: none;      /* Pour enlever les puces mis par défaut,
+                                  qui commence les items de type listes */
+  }
+
+  .special {
+    color: orange;
+    font-weight: bold;          /* Mettre le texte en gras */
+  }
+
+  li em {
+    color: rebeccapurple;
+  }
+
+  h1 + p {
+    font-size: 200%;
+  }*
+
+  body h1 + p .special {            /* Cette règle cible tout élément dont
+                                    l'attribut class vaut special, à l'intérieur
+                                    d'un <p>, qui vient juste après un <h1>, à
+                                    l'intérieur de <body>. Ouf ! */
+    color: yellow;
+    background-color: black;
+    padding: 5px;
+  }

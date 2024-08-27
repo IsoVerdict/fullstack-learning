@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Simple video example</title>
+  </head>
+  <body>
+    <h1>Below is a simple media example</h1>
+
+    <h2>Below is a simple video example</h2>
+    <figure>
+        <video controls poster="poster.png">
+            <source src="my_video.mp4" type="video/mp4" />
+            <source src="my_video.webm" type="video/webm" />
+            <p>
+              Votre navigateur ne prend pas en charge les vidéos HTML5. Voici, à la place,
+              un <a href="my_video.mp4">lien sur la vidéo</a>.
+            </p>
+        </video>
+        <figcaption>
+            My life at work
+        </figcaption>
+    </figure>
+
+    <h2>Below is a simple audio examples</h2>
+    <h3>Example 1</h3>
+    <audio controls>
+        <source src="my_audio1.mp3" type="audio/mp3" />
+        <source src="my_audio1.ogg" type="audio/ogg" />
+        <p>
+          Votre navigateur ne prend pas en charge l'audio HTML5. Voici, à la place, un
+          <a href="my_audio1.mp3">lien sur l'audio</a>.
+        </p>
+    </audio>
+
+    <h3>Example 2</h3>
+    <audio controls>
+        <source src="my_audio2.mp3" type="audio/mp3" />
+        <source src="my_audio2.ogg" type="audio/ogg" />
+        <p>
+          Votre navigateur ne prend pas en charge l'audio HTML5. Voici, à la place, un
+          <a href="my_audio2.mp3">lien sur l'audio</a>.
+        </p>
+    </audio>
+  </body>
+</html>

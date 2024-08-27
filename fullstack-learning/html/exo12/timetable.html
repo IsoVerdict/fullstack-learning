@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>School timetable</title>
+    <style>
+    html {
+      font-family: sans-serif;
+    }
+
+    table {
+      border-collapse: collapse;
+      border: 2px solid rgb(200,200,200);
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+
+    td, th {
+      border: 1px solid rgb(190,190,190);
+      padding: 10px 20px;
+    }
+
+    td {
+      text-align: center;
+    }
+
+    caption {
+      padding: 10px;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>School timetable</h1>
+
+    <table>
+      <caption>
+        language timetable
+      </caption>
+      <colgroup>
+        <col span="2"/> <!-- span="2" applique les effets
+                            sur deux colonnes, mais comme
+                            il n'y a aucun effets, alors les
+                            deux premières colones resterons
+                            sans effets -->
+        <col style="background-color:#97DB9A;"/> <!-- Ici c'est la colonne 3, 
+	  											   l'effet appliqué est une couleur 
+												   d'arriére plan vert-->
+        <col style="width: 42px;"/> <!-- Ici c'est la colonne 4, 
+                                     l'effet appliqué est une largeur
+                                     de 42 pixels -->
+        <col style="background-color:#97DB9A;"/> <!-- Ici c'est la colonne 5, 
+                                                    l'effet appliqué est une couleur 
+                                                    d'arriére plan vert-->
+        <col style="background-color:#DCC48E; border:4px solid #C1437A;"/>
+                                                    <!-- Ici c'est la colonne 6, 
+                                                    l'effet appliqué est une
+                                                    couleur d'arrière plan un peu
+                                                    spécial (c'est une couleur
+                                                    entre le jaune et le rose)
+                                                    et une bordure-->
+        <col style="width: 42px;" span="2"/> <!-- span="2" applique les effets
+                                            sur deux colonnes, donc ici c'est
+                                            les colonnes 7 et 8, l'effet appliqué
+                                            est une largeur de 42 pixels -->
+      </colgroup>
+      <tr>
+        <td>&nbsp;</td>
+        <th>Mon</th>
+        <th>Tues</th>
+        <th>Wed</th>
+        <th>Thurs</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
+      </tr>
+      <tr>
+        <th>1st period</th>
+        <td>English</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>German</td>
+        <td>Dutch</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th>2nd period</th>
+        <td>English</td>
+        <td>English</td>
+        <td>&nbsp;</td>
+        <td>German</td>
+        <td>Dutch</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th>3rd period</th>
+        <td>&nbsp;</td>
+        <td>German</td>
+        <td>&nbsp;</td>
+        <td>German</td>
+        <td>Dutch</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th>4th period</th>
+        <td>&nbsp;</td>
+        <td>English</td>
+        <td>&nbsp;</td>
+        <td>English</td>
+        <td>Dutch</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+
+
+  </body>
+</html>

@@ -1,0 +1,1097 @@
+/* Feuille de style externe
+Pour lier styles.css à un document html index.html ajoutez la ligne suivante
+dans la section <head> du document html index.html : */
+<link rel="stylesheet" href="styles.css" />
+
+
+
+/* Feuille de style interne
+Les règles CSS peuvent être écrites directement dans l'en-tête HTML <head> dans
+un élément <style>. On parle alors de feuille de style interne.
+Le code HTML ci-dessous illustre cette technique : */
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mes expérimentations CSS</title>
+    <style>
+      h1 {
+        color: blue;
+        background-color: yellow;
+        border: 1px solid black;
+      }
+
+      p {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <p>Ceci est mon premier exemple CSS</p>
+  </body>
+</html>
+
+
+
+/* Styles en ligne
+Les styles en ligne sont des déclarations CSS qui n'affectent qu'un seul élément,
+elles sont déclarées grâce à l'attribut style.
+Cette approche est vraiment à proscrire !Feuille de style externe Le code produit n'est pas maintenable
+(les modifications ne doivent plus se faire pour chaque page, mais dans chaque page,
+élément par élément !). Par ailleurs, mélanger le CSS avec le HTML rend la lecture
+du code plus difficile. En plus d'une meilleure lisibilité du code, séparer le fond
+de la forme rend le travail d'équipe plus facile.*/
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Mes expérimentations CSS</title>
+  </head>
+  <body>
+    <h1 style="color: blue;background-color: yellow;border: 1px solid black;">
+      Hello World!
+    </h1>
+    <p style="color:red;">Ceci est mon premier exemple CSS</p>
+  </body>
+</html>
+
+
+
+
+
+
+/* Quand on observe un document HTML bien formé, même simple comme notre
+exemple exo01/index.html , on peut voir comment un navigateur le rend lisible par
+une mise en forme par défaut. Les titres sont écrits en gras dans une taille plus
+grande, les items des listes sont précédés d'une puce. Les navigateurs ont leurs
+feuilles de style internes qu'ils appliquent par défaut à toutes les pages ; sans
+cela, tout le texte s'agglutinerait en paquet et il faudrait tout mettre en forme
+à partir de zéro. Tous les navigateurs modernes rendent les contenus HTML par défaut
+essentiellement de la même manière.
+On recherche pourtant souvent autre chose que ce rendu par défaut. Il suffit alors
+de sélectionner l'élément HTML dont on veut modifier le rendu et d'écrire la règle
+CSS pour réaliser cette mise en forme.
+Un sélecteur est une expression qui indique au navigateur à quelle entité HTML
+s'applique la règle CSS correspondante.
+Dans la règle CSS, le sélecteur correspond au nom d'un élément HTML, propriété 
+correspond à un attribut de cet éléments et valeur designe les différents aspects
+de cet attribut. Les termes "aspect" et "attribut" sont juste là pour expliquer.
+On peut cibler plusieurs éléments d'un coup en les listant, séparés par une virgule.*/
+selecteur1{
+    propriete1: valeur;
+    propriete2: valeur;
+    /* ect... */
+}
+selecteur2, selecteur3{
+    propriete1: valeur;
+    propriete2: valeur;
+    /* ect... */
+}
+
+
+
+/* Jusqu'ici, nous avons mis en forme des éléments HTML repérés par leur nom de
+balise. Cela fonctionne tant que vous voulez appliquer le même style à tous les
+éléments de ce type dans le document. La plupart du temps ce n'est pas le
+comportement désiré ; il faut donc trouver une méthode pour sélectionner un
+sous-ensemble des éléments à mettre en forme sans changer l'apparence des autres
+éléments du même type. L'approche la plus commune pour obtenir ce comportement est
+d'ajouter une classe (pensez à une étiquette) aux éléments HTML à mettre en forme
+puis de sélectionner cette classe.
+Dans le document HTML, ajouter un attribut class au deuxième item de la liste : */
+<ul>
+  <li>Item un</li>
+  <li class="special">Item deux</li>
+  <li>Item <em>trois</em></li>
+</ul>
+/* Dans votre CSS vous pouvez maintenant cibler la classe << special >> (remarquons 
+que c'est juste un nom on aurai pu mettre n'importe quel autre nom à la place
+de spécial) grâce à un sélecteur fait du nom de la classe précédé d'un point. Vous
+pouvez attribuer la classe special à tout élément dans votre document HTML. Ajoutez
+le code suivant à votre feuille de style : */
+.special {
+    color: orange;
+    font-weight: bold;
+}
+
+/* IMPORTANT , ETANT DONNÉE CETTE SYNTAXE */
+li.special {
+    color: orange;
+    font-weight: bold;
+  }
+/* Cette syntaxe signifie "s'applique à tous les éléments li dont l'attribut class a
+la valeur << special >>". Cette règle ne s'applique donc pas à tout autre élément dont
+l'attribut class a la valeur << special >> mais qui n'est pas un <li>. Pour que la
+règle s'applique aussi a un autre élément par exemple un <span> qui a l'attribut
+class ayant << special >> comme valeur, il faudrait l'ajouter dans la liste des
+sélecteurs : */
+li.special,
+span.special {
+  color: orange;
+  font-weight: bold;
+}
+
+
+
+/* Style en fonction de la position */
+/* Ce sélecteur cible tout élément <selecteur2> à l'intérieur (descendant) 
+d'un <selecteur1> */
+selecteur1 selecteu2 {
+  propriete: valeur;
+  /* etc... */
+}
+/* Voici un exemple
+Ce sélecteur cible tout élément <em> à l'intérieur (descendant) d'un <li> */
+li em {
+  color: rebeccapurple;
+}
+
+/* Ce sélecteur cible tout élément <selecteur2> qui vient juste après un <selecteur1>.
+Ce sont uniquement les éléments <selecteur2> qui viennent immédiatement après un
+élément <selecteur1>.
+Le sélecteur selecteur1 + selecteu2 cible spécifiquement le premier élément
+<selecteur2> qui suit directement un <h1>, sans autre élément HTML entre les deux.
+Si un autre élément (comme une image, une liste, ect... ) se trouve entre le
+<selecteur1> et le <selecteur2>, ce sélecteur ne s'appliquera pas.*/
+selecteur1 + selecteu2 {
+  propriete: valeur;
+  /* etc... */
+}
+/* Voici un exemple,
+qui applique un style à un paragraphe quand il vient juste après un titre de
+niveau un dans le fichier HTML */
+h1 + p {
+  font-size: 200%;
+}
+
+
+
+
+
+/* Mise en forme basée sur l'état */
+/* Voici comment appliquer des styles CSS en fonction de l'état d'un lien
+(élément <a>). Les liens peuvent avoir différents états :
+
+    Non visité (:link)    : le style est appliqué aux liens qui n'ont
+                            pas encore été cliqués.
+    Visité (:visited)     : le style est appliqué aux liens déjà cliqués.
+    Survolé (:hover)      : le style est appliqué lorsqu'on passe la souris
+                            sur le lien.
+    Focus (:focus)        : le style est appliqué quand le lien est sélectionné
+                            via le clavier.
+    Actif (:active)       : le style est appliqué pendant que le lien est cliqué.
+
+Ce concept permet de personnaliser l'apparence des liens en fonction de leur
+interaction avec l'utilisateur.
+Par exemple, dans le code donné,les liens non visités sont colorés en rose, les
+liens visités sont colorés en vert et les liens survolés n'ont plus de soulignement.*/
+a:link {
+  color: pink;
+}
+a:visited {
+  color: green;
+}
+a:hover {
+  text-decoration: none;
+}
+
+
+
+
+
+/* Associer sélecteurs et combinateurs */
+
+/* On peut associer sélecteurs et combinateurs. Par exemple : */
+/* sélectionne tout <span> à l'intérieur d'un <p>, lui-même à l'intérieur
+d'un <article>  */
+article p span { 
+  /* ect... */
+}
+/* sélectionne tout <p> qui vient juste après un <ul>, lui-même venant just
+après un <h1>  */
+h1 + ul + p {
+  /* ect... */
+}
+/* Cette règle cible tout élément dont l'attribut class vaut special, à l'intérieur
+d'un <p>, qui vient juste après un <h1>, à l'intérieur de <body>. Ouf ! */
+body h1 + p .special {
+  color: yellow;
+  background-color: black;
+  padding: 5px;
+}
+
+
+
+
+/* Voici un résumé de quelques sélecteurs CSS:*/
+
+h1
+a:link
+.manythings
+#onething
+*
+.box p
+.box p:first-child
+h1, h2, .intro
+
+/*
+  h1 :
+  Sélecteur de type qui cible tous les éléments <h1> dans un document HTML. Chaque
+  titre <h1> sera stylisé selon les règles CSS définies pour ce sélecteur.
+
+  a:link :
+  Pseudo-sélecteur qui cible les liens non visités (<a>). Il s'applique aux liens
+  dans leur état par défaut avant qu'ils ne soient cliqués par l'utilisateur.
+
+  .manythings :
+  Sélecteur de classe qui cible tous les éléments ayant l'attribut
+  class="manythings". Utilisé pour appliquer un style spécifique à un groupe
+  d'éléments.
+
+  #onething :
+  Sélecteur d'ID qui cible un élément unique ayant l'attribut id="onething". Les
+  ID doivent être uniques dans un document, donc ce sélecteur est utilisé pour cibler
+  un élément spécifique.
+
+  * :
+  Sélecteur universel qui cible tous les éléments d'un document. Il peut être utilisé
+  pour appliquer un style global ou pour réinitialiser des marges, des paddings, etc.
+
+  .box p :
+  Sélecteur descendant qui cible tous les éléments <p> qui sont des descendants
+  directs ou indirects d'un élément avec la classe .box.
+
+  .box p:first-child :
+  Sélecteur de pseudo-classe combiné qui cible le premier enfant <p> à l'intérieur
+  de tout élément avec la classe .box. Seul le premier <p> sera stylisé.
+
+  h1, h2, .intro :
+  Sélecteur groupé qui cible simultanément tous les éléments <h1>, <h2>, et tout
+  élément ayant la classe .intro. Ce sélecteur permet d'appliquer les mêmes styles
+  à plusieurs types d'éléments en une seule déclaration. */
+
+
+
+
+
+/* Le langage CSS a des règles pour déterminer quelle mise en forme appliquer en cas
+de collision de sélecteurs — elles sont appelées "cascade" et "spécificité".
+
+Cascade
+Les feuilles de style forment une cascade. Sous une forme très simple, cela signifie
+que l'origine, la couche de cascade et l'ordre des règles CSS comptent. Lorsque deux
+règles de la même couche de cascade s'appliquent et ont la même spécificité, c'est
+celle qui est définie dans la dernière feuille de style qui sera utilisée.
+Dans l'exemple qui suit, il y a deux règles qui pourraient s'appliquer à l'élément
+<h1>. Le contenu de cet élément <h1> est, en fin de compte, coloré en bleu. Dans
+cet exemple, les deux règles proviennent de la même source et ont un sélecteur 
+identique : elles ont donc la même spécificité et c'est alors la dernière règle,
+selon l'ordre du code source, qui l'emporte. */
+h1 {
+  color: red;
+}
+
+h1 {
+  color: blue;
+}
+
+/* Spécificité
+La spécificité est l'algorithme utilisé par le navigateur pour décider la valeur
+qui est appliquée à un élément pour une propriété donnée. Si plusieurs blocs de
+style utilisent différents sélecteurs qui configurent la même propriété avec
+différentes valeurs et qui ciblent le même élément, c'est la spécificité qui permet
+de décider la valeur de propriété qui est appliquée à l'élément. La spécificité est
+une mesure de la précision d'un sélecteur :
+
+      Un sélecteur d'élément est peu spécifique : il sélectionnera tous les éléments 
+      d'un type donné sur la page. Il a donc moins de poids. Les sélecteurs de
+      pseudo-éléments ont la même spécificité que les sélecteurs d'éléments.
+
+      Un sélecteur de classe sera plus spécifique : il sélectionnera uniquement les 
+      éléments d'une page qui ont une valeur d'attribut class donnée. Il a donc un
+      poids plus important. Les sélecteurs d'attributs et de pseudo-classes ont le
+      même poids que les sélecteurs de classes.
+
+Dans l'exemple qui suit, nous avons à nouveau deux règles qui pourraient s'appliquer
+à l'élément <h1>. Le contenu de cet élément est finalement coloré en rouge, car le
+sélecteur de classe main-heading donne une spécificité plus importante à la règle.
+Ainsi, même si la règle avec le sélecteur d'élément pour <h1> apparaît plus bas dans
+le code source, c'est la règle avec la spécificité la plus haute (celle utilisant
+le sélecteur de classe) qui est appliquée. */
+.main-heading {
+  color: red;
+}
+
+h1 {
+  color: blue;
+}
+
+/* Héritage
+Certaines propriétés dont les valeurs sont définies sur des éléments parents sont
+héritées par leurs enfants, tandis que d'autres ne sont pas héritées.
+Ainsi, si on définit des valeurs pour les propriétés color et font-family sur un
+élément, chaque élément enfant qu'il contient sera également mis en forme avec
+cette couleur et cette police, à moins qu'une couleur ou une police différente
+ait été appliquée directement sur ces éléments.
+L'héritage ne concerne pas toutes les propriétés. Ainsi, si on fixe width à 50% sur
+un élément, cela ne signifie pas que tous ses descendants auront une largeur égale
+à 50% de celle de leur parent. Si c'était le cas, CSS serait inutilement complexe. */
+
+
+/* Quelques propriétés 
+Une propriété associée à une valeur s'appelle une déclaration CSS
+Attention : Si la propriété est inconnue ou si la valeur est invalide pour une
+propriété donnée, la déclaration est considérée comme invalide et complètement
+ignorée par le moteur CSS du navigateur.
+
+  color :
+
+  Description : Définit la couleur du texte.
+  Valeurs possibles : red, #ff0000, rgb(255, 0, 0), rgba(255, 0, 0, 0.5), hsl(120, 100%, 50%)
+  Exemple : */
+  p {
+    color: blue; /* Texte en bleu */
+  }
+/*
+  background-color :
+  
+  Description : Définit la couleur de fond d'un élément.
+  Valeurs possibles : yellow, #ffff00, rgb(255, 255, 0), rgba(255, 255, 0, 0.5)
+  Exemple :
+*/
+  div {
+      background-color: lightgray; /* Fond gris clair */
+  }
+/*
+  font-size :
+  
+  Description : Définit la taille de la police de caractère.
+  Valeurs possibles : 16px, 1.5em, 100%, large
+  Exemple :
+*/
+  h1 {
+      font-size: 2em; /* Taille de police double */
+  }
+/*
+  margin :
+  
+  Description : Définit la marge extérieure autour d'un élément.
+  Valeurs possibles : 10px, 1em, auto, 10px 20px 10px 20px
+  Exemple :
+*/
+  .box {
+      margin: 20px; /* Marge de 20 pixels sur tous les côtés */
+  }
+/*
+  padding :
+  
+  Description : Définit la marge intérieure entre le contenu de l'élément et ses bordures.
+  Valeurs possibles : 15px, 1em, 10px 5px
+  Exemple :
+*/
+  .container {
+      padding: 10px; /* Espacement intérieur de 10 pixels */
+  }
+/*
+  border :
+  
+  Description : Définit la bordure autour d'un élément.
+  Valeurs possibles : 1px solid black, 2px dashed red, 3px double blue
+  Exemple :
+*/
+  img {
+      border: 2px solid black; /* Bordure noire de 2 pixels */
+  }
+/*
+  display :
+  
+  Description : Définit comment un élément est affiché dans le flux de document.
+  Valeurs possibles : block, inline, inline-block, none, flex, grid
+  Exemple :
+*/
+  .menu {
+      display: flex; /* Affichage en flexbox */
+  }
+/*
+  position :
+  
+  Description : Définit la méthode de positionnement d'un élément.
+  Valeurs possibles : static, relative, absolute, fixed, sticky
+  Exemple :
+*/
+  .popup {
+      position: absolute;
+      top: 50px;
+      left: 100px;
+  }
+/*
+  text-align :
+  
+  Description : Définit l'alignement horizontal du texte.
+  Valeurs possibles : left, right, center, justify
+  Exemple :
+*/
+  h2 {
+      text-align: center; /* Centrage du texte */
+  }
+/*
+  overflow :
+  
+  Description : Définit le comportement du contenu lorsqu'il dépasse la taille d'un élément.
+  Valeurs possibles : visible, hidden, scroll, auto
+  Exemple :
+*/
+  .scroll-box {
+      overflow: scroll; /* Ajout de barres de défilement */
+  }
+/*
+  width :
+  
+  Description : Définit la largeur d'un élément.
+  Valeurs possibles : 50%, 200px, auto, 10vw
+  Exemple :
+*/
+  .sidebar {
+      width: 250px; /* Largeur fixe de 250 pixels */
+  }
+
+
+
+
+
+
+
+
+
+/* Fonctions */
+
+/* calc() */
+/* Etant donnée ce code html */
+<div class="outer">
+  <div class="box">la boite interne vaut 90% - 30px.</div>
+</div>
+/* Le code css suivant à pour effets... */
+.outer {
+  border: 5px solid black;
+}
+
+.box {
+  padding: 10px;
+  width: calc(90% - 30px);
+  background-color: rebeccapurple;
+  color: white;
+}
+/* ...que la largeur de cette zone (les éléments html eyant pour classe << box >>)
+soit égale à 90% de la largeur du bloc conteneur, moins 30 pixels. Ce n'est pas
+quelque chose que l'on peut calculer à l'avance et simplement entrer la valeur dans
+le CSS, car on ne sait pas ce que seront 90%. */
+
+/* Exemple transform avec rotate() */
+/* Un autre exemple serait les différentes valeurs de la propriété <transform>,
+telles que rotate(). */
+/* Etant donnée ce code html */
+<div class="box"></div>
+/* Le code css suivant à pour effets... */
+.box {
+  margin: 30px;
+  width: 100px;
+  height: 100px;
+  background-color: rebeccapurple;
+  transform: rotate(0.8turn);
+}
+/* ...que le bloc selectionner sera afficher avec un certain angle de rotation  */
+
+
+
+
+/* Quelques propriétés  */
+transform
+background-image, en particulier les valeurs de dégradé
+color, en particulier les valeurs rgb/rgba/hsl/hsla
+
+
+
+
+/* Les @rules (prononcer "at-rules") */
+
+/* Ce sont des règles spéciales dictant un comportement CSS. Par exemple, pour
+importer une feuille de style additionnelle dans le CSS principal on
+utilisera @import : */
+@import "styles2.css";
+/* L'une des @rules les plus fréquemment rencontrée est @media, qui permet d'utiliser
+les media queries pour appliquer CSS seulement quand certaines conditions sont
+vérifiées (par ex. quand la résolution de l'écran dépasse une certaine valeur, ou
+quand l'écran dépasse une certaine largeur). */
+
+
+
+/* Dans le CSS ci-dessous, une règle donne à l'élément <body> un fond rose. La
+section @media ne s'appliquera que dans les navigateurs dont la fenêtre est plus
+large que 30em. Dans ce cas la couleur de fond sera redéfinie à bleue. */
+body {
+  background-color: pink;
+}
+
+@media (min-width: 30em) {
+  body {
+    background-color: blue;
+  }
+}
+
+
+
+
+/* Raccourcis
+Certaines propriétés comme font, background, padding, border, ou margin sont appelées
+propriétés raccourci — elles permettent d'attribuer plusieurs couples
+propriété : valeur en une seule ligne. On gagne du temps et le code est plus joli.
+Par exemple, la ligne suivante :*/
+/* Dans les raccourcis à 4 valeurs comme padding ou margin, les valeurs sont données
+   dans l'ordre top, right, bottom, left (sens des aiguilles d'une montre depuis top).
+   Il y a d'autres raccourcis, a 2 valeurs par exemple qui padding ou margin
+   pour top/bottom, puis left/right */
+padding: 10px 15px 15px 5px;
+/* produit le même effet que les quatre lignes suivantes réunies : */
+padding-top: 10px;
+padding-right: 15px;
+padding-bottom: 15px;Alors que :
+padding-left: 5px;
+/* Alors que : */
+background: red url(bg-graphic.png) 10px 10px repeat-x fixed;
+/* produit la même chose que tout ce qui suit : */
+background-color: red;
+background-image: url(bg-graphic.png);
+background-position: 10px 10px;
+background-repeat: repeat-x;
+background-scroll: fixed;
+/* Attention : Les raccourcis vous autorisent à ne pas déclarer certaines valeurs,
+mais dans ce cas, les valeurs non déclarées sont restaurées à leur valeur par défaut.
+Cela garantit l'usage d'un ensemble de valeurs qui restent raisonnables. Cela peut par
+contre vous surprendre, si vous pensiez que le raccourci ne changeait que les valeurs
+passées en argument. */
+
+
+
+
+/* Combinant les sélecteurs */
+/* Ceci est la même chose que... */
+h1 {
+  color: blue;
+}
+
+.special {
+  color: blue;
+}
+/* ... ça */
+h1,
+.special {
+  color: blue;
+}
+/* NB: Quand on regroupe ainsi des sélecteurs, si l'un des sélecteurs est invalide la
+règle toute entière sera ignorée. */
+
+
+
+
+/* Types de sélecteurs 
+On peut regrouper les sélecteurs en différents groupes ; classer les sélecteurs par
+type vous aidera à identifier l'outil pertinent pour chaque situation.*/
+
+/* Sélecteurs de type, de classe, et d'ID
+Ce groupe inclut les sélecteurs ciblant les élements HTML tels que <h1> */
+h1 {
+}
+/* On trouve aussi les sélecteurs ciblant une classe : */
+.box {
+}
+/* ou un ID : */
+#unique {
+}
+
+/* Utiliser le sélecteur universel << * >> pour rendre les sélecteurs plus lisibles
+Par exemple, si je veux sélectionner tout élément descendant de l'élément <article>,
+qui est le premier enfant de son parent, pour le mettre en gras, je peux utiliser
+le sélecteur :first-child */
+article :first-child {
+}
+/* On peut néanmoins confondre ce sélecteur avec article:first-child ciblant les
+éléments <article> qui sont le premier descendant d'un élément.
+Pour éviter cette confusion, on peut ajouter le sélecteur universel * à :first-child,
+le fonctionnement de ce dernier sera plus clair : il cible tout élément premier
+descendant d'un élément <article> : */
+article *:first-child {
+}
+
+
+/* Cibler un élément appartenant à plus d'une classe
+Vous pouvez attribuer plusieurs classes à un même élément et les sélectionner
+individuellement, ou cibler l'élément seulement quand toutes les classes apparaissent
+dans le sélecteur. Cela peut s'avérer utile si vous créez des composants qui peuvent
+être combinés de différentes manières sur votre site.
+L'exemple ci-dessous présente trois <div> contenant chacun une note. Si la boîte est
+dans la classe notebox elle a une bordure grise. Si de plus elle est dans la classe
+warning ou danger, on change la border-color.
+On indique au navigateur la combinaison de classes ciblée en enchaînant les
+sélecteurs de classe sans laisser d'espace entre.
+
+css:                                html:  */
+
+.notebox {                          <div class="notebox">
+  border: 4px solid #666;             This is an informational note.
+  padding: .5em;                    </div>
+}                                   
+                                    <div class="notebox warning">
+.notebox.warning {                    This note shows a warning.
+  border-color: orange;             </div>
+  font-weight: bold;
+}                                   <div class="notebox danger">
+                                      This note shows danger!
+.notebox.danger {                   </div>
+  border-color: red;
+  font-weight: bold;                <div class="danger">
+}                                     This won't get styled — it also needs to have the notebox class
+                                    </div>
+
+/* Note : Comme on l'a vu dans la leçon sur la spécificité, on attribue une haute
+spécificité aux ID, les sélecteurs d'ID l'emportent donc sur la plupart des autres.
+Cela peut rendre leur usage compliqué. La plupart du temps il est préférable de
+passer par des sélecteurs de classe plutôt que d'ID, cependant si l'utilisation
+d'une ID est la seule façon de cibler un élément — peut-être que vous n'avez pas
+accès au balisage, que vous ne pouvez pas l'éditer — cela fonctionnera. */
+
+
+
+
+
+
+/* Sélecteurs d'attribut
+Ce groupe de sélecteurs offre différents mécanismes pour cibler des éléments en
+fonction de la présence d'un attribut donné pour un élément donné : */
+a[title] {
+}
+/* Ou même de baser la sélection sur la présence d'un attribut avec une valeur
+bien précise : */
+a[href="https://example.com"]{
+}
+
+/* Sélecteur de présence et de valeur
+Ces sélecteurs permettent de cibler un élément en fonction de la présence d'un
+attribut unique (par exemple href), ou sur des correspondances variées avec la
+valeur d'un attribut donné 
+
+    Sélecteur	      Exemple	                        Description
+
+    [attr]	        a[title]	                      Cible les éléments avec un
+                                                    attribut du nom de attr — la
+                                                    valeur entre les crochets droits.
+    
+    [attr=value]	  a[href="https://example.com"]	  Cible les éléments dont l'attribut
+                                                    attr a la valeur value — la chaîne
+                                                    entre guillemets.
+
+    [attr~=value]	  p[class~="special"]	            Cible les éléments avec un attribut
+                                                    attr dont la valeur est exactement
+                                                    value, ou les éléments dont
+                                                    l'attribut attr contient une ou
+                                                    plusieurs valeurs, dont au moins
+                                                    une correspond à value.
+                                                    Notez que dans une liste de
+                                                    plusieurs valeurs, le séparateur
+                                                    est l'espace.
+
+    [attr|=value]	  div[lang|="zh"]	                Cible les éléments avec un
+                                                    attribut attr dont la valeur peut
+                                                    être exactement value ou peut
+                                                    commencer par value immédiatement
+                                                    suivie d'un trait d'union.
+
+Dans l'exemple ci-dessous vous voyez ces sélecteurs en action :
+    Avec li[class] on cible tout élément <li> possédant un attribut class. On cible
+    ainsi tous les éléments de la liste sauf le premier.
+
+    li[class="a"] cible les <li> appartenant à la classe a et seulement elle. Un
+    élément <li> dans la classe a mais aussi dans une autre classe ne sera pas
+    sélectionné. Ce sélecteur cible le deuxième item de la liste.
+
+    li[class~="a"] cible tout élément <li> dont l'attribut class contient a dans sa
+    liste de valeurs (séparées par des espaces). Les items deux et trois de la liste
+    sont sélectionnés.
+
+css:                            html:    */
+
+li[class] {                     <h1>Attribute presence and value selectors</h1>
+  font-size: 200%;              <ul>
+}                                 <li>Item 1</li>
+                                  <li class="a">Item 2</li>
+li[class="a"] {                   <li class="a b">Item 3</li>
+  background-color: yellow;       <li class="ab">Item 4</li>
+}                               </ul>
+
+li[class~="a"] {
+  color: red;
+}
+
+/* Sélecteurs ciblant une sous-chaîne
+Ces sélecteurs permettent une sélection plus fine des sous-chaînes à l'intérieur de
+la valeur de l'attribut. Par exemple, vous avez défini des classes box-warning et
+box-error, vous voulez cibler les classes dont le nom commence par "box-". Le
+sélecteur d'attribut [class ^= "box-"] est là pour ça.
+
+    Sélecteur	      Exemple	            Description
+
+    [attr^=value]	  li[class^="box-"]	  élément sélectionné quand la valeur value de
+                                        l'attribut attr commence par la sous-chaîne
+                                        value.
+    [attr$=value]	  li[class$="-box"]	  élément sélectionné quand la valeur de
+                                        l'attribut attr finit par la sous-chaîne
+                                        value.
+    [attr*=value ]	li[class*="box"]	  élément sélectionné quand la la sous-chaîne
+                                        value apparaît quelque part dans la valeur
+                                        de l'attribut attr.
+
+L'exemple suivant montre ces sélecteurs en action :
+
+    li[class^="a"] correspond à toute valeur d'attribut commençant par un a, ce
+    sélecteur cible donc les deux premiers items de la liste.
+    
+    li[class$="a"] correspond à toute valeur d'attribut finissant par un a, ce
+    sélecteur cible donc les items un et trois de la liste.
+
+    li[class*="a"] correspond à toute valeur d'attribut contenant quelque part un a,
+    ce sélecteur cible donc tous les items de la liste.
+
+css:                            html:    */
+
+li[class^="a"] {                <h1>Attribute substring matching selectors</h1>
+  font-size: 200%;              <ul>
+}                                 <li class="a">Item 1</li>
+                                  <li class="ab">Item 2</li>
+li[class$="a"] {                  <li class="bca">Item 3</li>
+  background-color: yellow;       <li class="bcabc">Item 4</li>
+}                               </ul>
+
+li[class*="a"] {
+  color: red;
+}
+/* Sensibilité à la casse
+Pour cibler des valeurs d'attribut sans prendre en compte la casse (majuscule ou
+minuscule indifférentes), ajoutez la valeur i avant le crochet fermant. Ce drapeau
+signale au navigateur d'identifier les caractères ASCII sans se préoccuper de la
+casse (a = A). Sans le drapeau i, les valeurs seront identifiées selon la sensibilité
+à la casse de la langue du document — HTML est sensible à la casse.
+Dans l'exemple ci-dessous, le premier sélecteur cible les valeurs commençant par
+un a — seul le premier élément de la liste est ciblé, les deux suivants commencent
+par un A majuscule. Le second sélecteur est marqué du drapeau insensible à la casse,
+il cible donc tous les éléments de la liste. 
+Note : Dans des contextes normalement insensibles à la casse, on peut forcer la
+sensibilité avec la valeur s nouvellement introduite, mais sa prise en charge par
+les navigateurs est inégale ; elle n'est pas très utile dans un contexte HTML.*/
+li[class^="a" i] {
+  color: red;
+}
+
+
+
+
+/* Pseudo-classes et pseudo-éléments
+Ce groupe de sélecteurs inclut les pseudo-classes, qui ciblent des éléments dans
+un état donné. Les pseudo-classes sont signalées par un mot clé commençant par
+deux points : Par exemple, la pseudo-classe :hover sélectionne un élément
+seulement s'il est survolé par le pointeur de la souris :*/
+a:hover {
+}
+/* Ce groupe inclut aussi les pseudo-éléments, qui ciblent une certaine partie
+d'un élément plutôt que l'élément tout entier. Les pseudo-éléments commencent
+avec un double deux-points ::. Par exemple, ::first-line sélectionne la première
+ligne d'un texte contenu dans un élément (un <p> dans l'exemple ci-dessous),
+comme si la première ligne du texte mis en forme était placée entre <span> et
+qu'après coup on appliquait un style sur cet élément. 
+Note : Certains anciens pseudo-éléments utilisaient un simple deux-points, vous
+pouvez donc parfois rencontrer cette syntaxe dans du code ou des exemples. Les
+navigateurs modernes supportent les anciens pseudo-éléments avec un simple ou
+double deux-points pour assurer la compatibilité.*/
+p::first-line {
+}
+
+/* Combiner pseudo-classes et pseudo-éléments
+Si vous souhaitez mettre en gras la première ligne du premier paragraphe, vous
+pouvez enchaîner les sélecteurs :first-child et ::first-line.
+Dans l'exemple qui suit nous souhaitons sélectionner la première ligne du premier
+élément <p>, qui se trouve à l'intérieur d'un élément <article> */
+article p:first-child::first-line {
+  font-size: 120%;
+  font-weight: bold;
+}
+/* Générer du contenu avec ::before et ::after 
+Il existe quelques pseudo-éléments spéciaux, qui sont utilisés avec la propriété
+content pour insérer du contenu dans votre document en utilisant le CSS.
+Vous pouvez les utiliser pour insérer une chaîne de texte, comme dans l'exemple
+ci-dessous. Essayez de changer la valeur du texte de la propriété content et vous
+verrez qu'elle change en sortie. Vous pouvez également changer le pseudo-élément
+::before en ::after et voir le texte inséré à la fin de l'élément au lieu du début. 
+
+css:                      html:     */
+.box::before {            <p class="box">Content in the box in my HTML page.</p>
+  content: " 24 ";
+}
+/* L'insertion de chaînes de caractères à partir de CSS n'est pas vraiment quelque
+chose que nous faisons très souvent sur le web, car ce texte est inaccessible pour
+certains lecteurs d'écran et pourrait être difficile à trouver et à modifier à
+l'avenir. Une utilisation plus pertinente de ces pseudo-éléments consiste à insérer
+une icône, par exemple la petite flèche ajoutée dans l'exemple ci-dessous, qui est
+un indicateur visuel que nous ne voudrions pas voir lu par un lecteur d'écran : 
+
+css:                      html:     */
+.box::after {             <p class="box">Content in the box in my HTML page.</p>
+  content: " ➥";
+}
+/* L'utilisation des pseudo-éléments ::before et ::after avec la propriété content
+est appelée "Generated Content" en CSS, et vous verrez souvent cette technique
+utilisée pour diverses tâches.
+Ces pseudo-éléments sont aussi fréquemment utilisés pour insérer une chaîne vide,
+qui peut ensuite être stylisée comme n'importe quel élément de la page.
+Dans l'exemple suivant, nous avons ajouté une chaîne vide en utilisant le
+pseudo-élément ::before pseudo-element. Nous l'avons défini en display: block afin
+de pouvoir la styliser avec une largeur et une hauteur. Nous utilisons ensuite le
+CSS pour la styliser comme n'importe quel élément. Vous pouvez jouer avec le CSS et
+modifier son apparence et son comportement.
+
+css:                      html:     */
+.box::before {            <p class="box">Content in the box in my HTML page.</p>
+  content: "";              
+  display: block;
+  width: 100px;
+  height: 100px;
+  background-color: rebeccapurple;
+  border: 1px solid black;
+}
+
+
+
+/* Combinateurs
+Dans la dernière catégorie, on combine les sélecteurs pour cibler plus finement
+les éléments dans nos documents. */
+/* Le combinateur descendant— en général représenté par un seul espace (" ") —
+combine deux sélecteurs de sorte que les éléments choisis par le second sélecteur
+sont sélectionnés s'ils ont un élément ancêtre (parent, parent de parent, parent
+de parent de parent, etc...) qui correspond au premier sélecteur. Les sélecteurs
+qui utilisent un combinateur descendant sont appelés sélecteurs descendants. */
+body article p{
+}
+/* Combinateur enfant
+Le combinateur enfant (>) est placé entre deux sélecteurs CSS. Il correspond
+uniquement aux éléments correspondant au second sélecteur qui sont les enfants
+directs des éléments correspondants au premier. Les éléments descendants plus bas
+dans la hiérarchie ne correspondent pas. 
+L'exemple suivant sélectionne les paragraphes
+enfants directs de <article> grâce au combinateur enfant (>) : */
+article > p {
+}
+/* Combinateur frère adjacents
+Le sélecteur de frère adjacent (+) est utilisé pour sélectionner quelque chose s'il
+est juste à côté d'un autre élément au même niveau de la hiérarchie. Par exemple,
+pour sélectionner tous les éléments <img> qui viennent juste après les éléments <p>: */
+p + img{
+}
+/* Combinateur général de frères
+Si vous souhaitez sélectionner les frères d'un élément même s'ils ne sont pas
+directement adjacents, vous pouvez utiliser le combinateur général de frères (~).
+Pour sélectionner tous les éléments <img> qui viennent n'importe où après les
+éléments <p>, nous ferions ceci: */
+p ~ img{
+}
+/* Vous pouvez combiner n'importe lequel des sélecteurs que nous avons découverts
+précédemment avec des combinateurs afin de sélectionner une partie de votre
+document. Par exemple, si nous voulons sélectionner des éléments de liste avec une
+classe de "a", qui sont des enfants directs d'un <ul>, je pourrais utiliser ce qui
+suit. */
+ul > li[class="a"]{
+}
+
+/*  Sélecteur	                    Exemple	            Tutoriel CSS
+
+    Sélecteur de type	            h1 { }	            Sélecteurs de type        https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors
+    Sélecteur universel	          * { }	              The universal selector    https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors#the_universal_selector
+    Sélecteur de classe	          .box { }	          Class selectors           https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors#class_selectors
+    Sélecteur d'ID	              #unique { }	        ID selectors              https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors#id_selectors
+    Sélecteur d'attribut	        a[title] { }	      Attribute selectors       https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Attribute_selectors
+    Pseudo-class selectors	      p:first-child { }	  Pseudo-classes            https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements#what_is_a_pseudo-class
+    Pseudo-element selectors	    p::first-line { }	  Pseudo-elements           https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements#what_is_a_pseudo-element
+    Sélecteur descendant	        article p	          Descendant combinator     https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Combinators#descendant_selector
+    Sélecteur enfant	            article > p	        Child combinator          https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Combinators#child_combinator
+    Sélecteur de frère adjacent	  h1 + p	            Adjacent sibling          https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Combinators#adjacent_sibling
+    Sélecteur de frère général	  h1 ~ p	            General sibling           https://developer.mozilla.org/fr/docs/Learn/CSS/Building_blocks/Selectors/Combinators#general_sibling
+*/
+
+
+
+
+
+/* */
+/* */
+/* */
+/* */
+/* */
+/* Etant donnée ce code html */
+
+/* Le code css suivant à pour effets... */
+
+/* ...que  */
+
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */

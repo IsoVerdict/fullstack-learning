@@ -1,0 +1,50 @@
+/* Créez votre test CSS ici */
+
+.special {
+    color: red;
+  }
+  
+  p {
+    color: blue;
+  }
+
+  .outer {
+    border: 5px solid black;
+  }
+  
+  .box1 {
+    padding: 10px;
+    width: calc(90% - 30px);
+    background-color: rebeccapurple;
+    color: white;
+  }
+
+  .box2 {
+    margin: 30px;
+    width: 100px;
+    height: 100px;
+    background-color: rebeccapurple;
+    transform: rotate(0.8turn);
+  }
+
+  body {
+    background-color: pink;
+  }
+  
+  @media (min-width: 800px) {
+    body {
+      background-color: blue;
+    }
+  }
+  
+  .box3 {
+    width: 500px;               /* Un vieux navigateur utilisera cette 
+                                    première déclaration; il ignore la
+                                    seconde parce qu'il ne le comprend pas. */
+    width: calc(100% - 50px);   /* Les navigateurs récents interprètent
+                                    la déclaration précédente, puis celle-ci
+                                    avec calc() qui, par cascade, écrase
+                                    la déclaration précédente. */
+    background-color: white;
+  }
+  

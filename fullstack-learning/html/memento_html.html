@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<!-- Pour définir la langue de votre page. Cela peut être fait en ajoutant l'attribut lang à la balise ouvrante HTM, ici j'ai mis lang="en-US" mais j'aurais pu mettre lang="fr" vu que la page est un melange de français et englais -->
+<html lang="en-US">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Cédric MIDIANGA" >
+    <meta name="description" content="La zone Apprentissage des documents web du MDN a pour but de donner aux débutants du Web tout ce qu'ils doivent savoir pour commencer le développement de pages wevs et d'applications">
+
+    <!--  Open Graph Data est un protocole de métadonnées que Facebook a inventé pour fournir des métadonnées plus riches pour les sites webs
+    En conséquence, lorsque vous faites un lien à MDN sur Facebook, le lien apparaît avec une image et une description : une expérience plus riche pour les utilisateurs. -->
+    <meta
+  		property="og:image"
+  		content="https://developer.mozilla.org/mdn-social-share.png" />
+	<meta
+  		property="og:description"
+  		content="MDN Web Docs fournit des informations sur les technologies web ouvertes comme HTML, CSS et les API utilisées pour les sites web et les applications web. On y trouve également de la documentation destinées aux développeurs à propos des produits Mozilla tels que les outils de développement de Firefox." />
+	<meta property="og:title" content="Mozilla Developer Network" />
+
+	<!-- Twitter a aussi une métadonnée propriétaire, qui a un effet similaire quand l'URL du site est affichée sur twitter.com -->
+    <meta name="twitter:title" content="Mozilla Developer Network" />
+
+
+
+    <!-- Pour ajouter une icone qui peut apparaitre à certain endroit -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- troisième-génération iPad avec haute-résolution Retina display: -->
+	<link
+  	rel="apple-touch-icon-precomposed"
+  	sizes="144x144"
+ 	 href="https://developer.mozilla.org/static/img/favicon144.png" />
+	<!-- iPhone avec haute-résolution Retina display: -->
+	<link
+ 	 rel="apple-touch-icon-precomposed"
+  	 sizes="114x114"
+ 	 href="https://developer.mozilla.org/static/img/favicon114.png" />
+	<!-- iPad de première et deuxième génération : -->
+	<link
+ 	 rel="apple-touch-icon-precomposed"
+ 	 sizes="72x72"
+ 	 href="https://developer.mozilla.org/static/img/favicon72.png" />
+	<!-- iPhone non-Retina, iPod Touch et appareils Android 2.1+: -->
+	<link
+  	 rel="apple-touch-icon-precomposed"
+ 	 href="https://developer.mozilla.org/static/img/favicon57.png" />
+	<!-- favicône de base -->
+	<link
+ 	 rel="shortcut icon"
+  	 href="https://developer.mozilla.org/static/img/favicon32.png" />
+
+  	 <!--  Pour utiliser du CSS, rel="stylesheet" indiquant qu'il s'agit de la feuille de style du document, et href indiquant le chemin d'accès au fichier la contenant -->
+  	 <link rel="stylesheet" href="mon_fichier_css.css">
+
+    <title>&lt;title&gt; element</title>
+  </head>
+  
+  
+  
+  
+  
+  
+  
+<!--  	----------------------------------------------------------------------------------------- 
+	-----------------------------------------------------------------------------------------
+	-----------------------------------------------------------------------------------------
+	-->
+  <body>
+  
+  	<!-- Voici une liste des entités HTML les plus courantes, qui sont utilisées pour représenter des caractères spéciaux dans le code HTML :
+
+		Espaces et sauts de ligne :					Caractères de ponctuation :
+
+		&nbsp; : Espace insécable (non-breaking space)		&lt; : Inférieur à (<)
+		&ensp; : Espace courte						&gt; : Supérieur à (>)
+		&emsp; : Espace longue						&amp; : Esperluette (&)
+		&thinsp; : Espace fine						&quot; : Guillemet double (")
+		&brvbar; : Barre brisée (|)					&apos; : Apostrophe (')
+		&shy; : Signe de césure souple (soft hyphen)		&cent; : Symbole cent (¢)
+											&pound; : Symbole livre (£)
+											&yen; : Symbole yen (¥)
+											&euro; : Symbole euro (€)
+											&copy; : Symbole copyright (©)
+											&reg; : Symbole marque déposée (®)
+
+
+		Caractères spéciaux :						Caractères mathématiques :
+
+		&sect; : Signe de section (§)					&plusmn; : Plus ou moins (±)
+		&deg; : Degré (°)							&times; : Multiplication (×)
+		&para; : Paragraphe (¶)						&divide; : Division (÷)
+		&middot; : Point médian (·)					&equals; : Égal (=)
+		&bull; : Puce (•)							&lt; : Inférieur (<)
+		&hellip; : Points de suspension (…)				&gt; : Supérieur (>)
+		&ndash; : Tiret court (–)					&le; : Inférieur ou égal (≤)
+		&mdash; : Tiret long (—)					&ge; : Supérieur ou égal (≥)
+											&radic; : Racine carrée (√)
+											&pi; : Pi (π)
+											&sum; : Somme (∑)
+
+
+		Lettres accentuées :						Flèches :
+
+		&aacute; : a accent aigu (á)					&larr; : Flèche gauche (←)
+		&eacute; : e accent aigu (é)					&uarr; : Flèche haut (↑)
+		&iacute; : i accent aigu (í)					&rarr; : Flèche droite (→)
+		&oacute; : o accent aigu (ó)					&darr; : Flèche bas (↓)
+		&uacute; : u accent aigu (ú)					&harr; : Flèches horizontales (↔)
+		&Agrave; : A accent grave (À)					&crarr; : Flèche retour chariot (↵)
+		&Egrave; : E accent grave (È)
+		&Igrave; : I accent grave (Ì)
+		&Ograve; : O accent grave (Ò)
+		&Ugrave; : U accent grave (Ù)
+		&ccedil; : c cédille (ç)
+		&ntilde; : n tilde (ñ)
+
+-->
+  
+  
+    <h1>&lt;h1&gt; element</h1>
+
+
+
+    <!--  Vous pouvez également définir des sous-sections de votre document pour qu'elles soient reconnues comme étant en différentes langues. Par exemple, nous pourrions définir la partie en langue japonaise pour qu'elle soit reconnue comme telle, de la manière suivante :
+    	<span lang="jp">ご飯が熱い。</span> -->
+    <p>Japanese example: <span lang="jp">ご飯が熱い。</span>.</p>
+    
+    
+    <!--  Les listes non-ordonnées -->
+    <ul>
+	<li>lait</li>
+	<li>œufs</li>
+	<li>pain</li>
+	<li>houmous</li>
+    </ul>
+    
+    <!--  Les listes ordonnées -->
+    <ol>
+ 	 <li>Roulez jusqu'au bout de la route</li>
+  	<li>Tournez à droite</li>
+ 	 <li>Allez tout droit aux deux premiers ronds-points</li>
+  	<li>Tournez à gauche au troisième rond-point</li>
+ 	 <li>Roulez sur 300 mètres, l'école est sur votre droite</li>
+    </ol>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--  En HTML, nous utilisons l'élément <em> (emphase) pour rendre le document plus intéressant à lire, ces marqueurs sont reconnus par les lecteurs d'écran et exprimés sur un ton de voix différent. Les navigateurs utilisent l'italique par défaut, mais il ne faut pas utiliser cette balise pour mettre en italique. Pour cela, utilisez un élément <span> et du CSS, ou plus simplement un élément <i> -->
+    <p>Je suis <em>content</em> que vous n'ayez pas été <em>en retard</em>.</p>
+    
+    <!--  En HTML, nous utilisons l'élément <strong> (forte importance) pour mettre l'accent sur des mots très importants. En plus de rendre le document plus lisible, ces balises sont reconnues par les lecteurs d'écran et énoncées avec des intonations différentes. Par défaut, les navigateurs mettent le texte marqué en gras, mais il ne faut pas utiliser cette balise pour mettre en gras. Pour cela, utilisez un élément <span> et du CSS, ou plus simplement un élément <b> -->
+    <p>Ce liquide est <strong>hautement toxique</strong>.</p>
+    <p>Je compte sur vous. <strong>Ne soyez pas en retard</strong>&nbsp;!</p>
+    
+    <!-- <b>, <i> et <u> est un peu plus complexe. Ils sont apparus pour que les personnes puissent écrire du texte en gras, en italique ou souligné à une époque où le CSS était encore mal ou pas du tout pris en charge. De tels éléments, qui n'affectent que la présentation et non la sémantique, sont appelés éléments de présentation et ne devraient être utilisés que pour donner un aspect visuel et non pour donnée un sens supplémentaire à du texte, si c'est donnée un sens supplémentaire au texte vaut mieux utiliser <em> ou <strong> -->
+    <!-- noms scientifiques -->
+    <p> Le colibri à gorge rouge (<i>Archilochus colubris</i>) est le colibri le plus courant dans l'ouest de l'Amérique du Nord.</p>
+    
+    <!-- mots dans une langue étrangère -->
+    <p> Le menu était un océan de mots exotiques comme
+  	<i lang="uk-latn">vatrushka</i>, <i lang="id">nasi goreng</i> et
+  	<i lang="en">porridge</i>.
+    </p>
+    
+    <!-- une faute d'orthographe connue -->
+    <p>Un jour, j'apprendrai comment mieux
+   	<u style="text-decoration-line: underline; text-decoration-style: wavy;">épeler</u>.
+    </p>
+
+    <!-- Mettre en évidence les mots‑clés dans un ensemble d'instructions -->
+    <ol>
+  	<li><b>Prendre</b> deux morceaux de pain dans le placard.</li>
+  	<li><b>Donner</b> les morceaux de pain aux plus nécessiteux.</li>
+    </ol>
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- Pour créer un lien -->
+    <a href="https://www.mozilla.org/fr/">la page d'accueil Mozilla</a>
+    <a href="https://www.mozilla.org/fr/" title="Le meilleur endroit pour trouver plus d'informations sur la mission de Mozilla et la manière de contribuer">la page d'accueil Mozilla</a>
+    <a href="https://developer.mozilla.org/fr/">
+  	<h1>MDN Web Docs</h1>
+    </a>
+    <a href="https://developer.mozilla.org/fr/">
+  	<img src="mdn_logo.svg" alt="MDN Web Docs" />
+    </a>
+    
+    <!-- Pour créer un lien qui emmene à la page contacts.html, projects/index.html, etc... -->
+    <a href="contacts.html">Contacts</a>
+    <a href="projects/index.html">page d'accueil</a>
+    <a href="../pdfs/project-brief.pdf">sommaire de projet</a>
+    <a href="../../../chemin/complexe/vers/mon/fichier.html">sommaire de projet</a>
+    
+    
+    
+    <!-- Il est possible de faire un lien vers une partie donnée d'un document HTML, qu'on appelle un fragment de document, plutôt que vers le haut du document. Pour ce faire, vous devrez d'abord assigner un attribut id à l'élément vers lequel vous voulez pointer. Il est généralement logique d'établir un lien vers une rubrique précise, ainsi cela ressemble à quelque chose comme : -->
+    <h2 id="Contact">Adresse de contact</h2>
+    <!-- Puis, pour faire un lien vers cet id précisément, il convient de l'indiquer à la fin de l'URL, précédé d'un croisillon (#) : -->
+    <p>Vous voulez nous écrire une lettre ? Utilisez notre<a href="contacts.html#Contact">adresse de contact</a>.
+    </p>
+    <!-- Vous pouvez même utiliser une référence au fragment de document seul pour faire un lien vers une autre partie du même document : -->
+    <p>Vous trouverez <a href="#Contact">notre adresse</a> au bas de cette page.</p>
+    
+    
+    
+    <!-- Quand vous faites un lien avec une ressource qui doit être téléchargée plutôt qu'ouverte dans le navigateur, vous pouvez utiliser l'attribut download pour fournir un nom d'enregistrement par défaut. -->
+    <a
+  	href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=fr-FR"
+  	download="firefox-latest-64bit-installer.exe">
+  	Télécharger la version de Firefox pour Windows la plus récente (64-bit)(français, France)
+    </a>
+    
+    
+    
+    <!-- En plus de l'adresse électronique, vous pouvez fournir d'autres informations. En fait, tous les champs d'en-tête standards peuvent être ajoutés à l'URL mailto fournie. Les champs les plus couramment utilisés sont subject, cc et body (qui n'est pas à proprement parler un champ d'en-tête, mais qui vous permet d'indiquer un court message de contenu pour le nouveau courriel). La valeur de chaque champ est encodée comme un paramètre de requête.
+
+	   Voici un exemple incluant cc (carbon copy, pour les destinataires en copie), bcc (blind cc, pour les destinataires en copie cachée), subject (sujet) et body : 
+	   
+	   Note : La valeur de chaque champ doit être codée à la façon d'une URL, c'est-à-dire que les caractères non-imprimables (les caractères invisibles tels que les tabulations, les retours chariot et les sauts de page) et les espaces doivent être échappés avec un encodage-pourcent. Notez également l'utilisation du point d'interrogation (?) pour séparer l'URL principale des valeurs de champ et de l'esperluette (&) pour séparer chaque champ dans l'URL mailto:. C'est la notation standard des requêtes URL. Voir la documentation de la méthode HTTP GET pour comprendre pourquoi la notation de requête URL est habituellement utilisée.
+	   
+	   Voici quelques autres exemples d'URL mailto :
+
+		mailto:
+		mailto:nullepart@mozilla.org
+		mailto:nullepart@mozilla.org,personne@mozilla.org
+		mailto:nullepart@mozilla.org?cc=personne@mozilla.org
+		mailto:nullepart@mozilla.org?cc=personne@mozilla.org\&subject=Ceci%20est%20l%27objet
+		 -->
+    <a
+  	href="mailto:nullepart@mozilla.org?cc=nom2@rapidtables.com&bcc=nom3@rapidtables.com&subject=L%27objet%20du%20courriel&body=Le%20corps%20du%20courriel">
+  	Envoyer un e-mail avec copie, copie cachée, sujet et corps de message
+    </a>
+    
+    <!-- Les listes descriptives -->
+    <dl>
+    	<dt>Terme</dt>
+  	<dd>
+  	 	Définition
+ 	</dd>
+  	<dt>soliloque</dt>
+  	<dd>
+  	 	Dans une pièce de théâtre, action d'un acteur adressant à lui-même ses pensées ou sentiments intimes et, de la sorte, les faisant partager à son auditoire (mais pas aux autres personnages de la pièce).
+ 	 </dd>
+  	<dt>monologue</dt>
+  	<dd>
+    		Dans une pièce de théâtre, action d'un acteur partageant ses pensées à haute voix avec le public et tous les personnages présents.
+  	</dd>
+  	<dt>aparté</dt>
+  	<dd>
+    		Dans une pièce de théâtre, action d'un acteur partageant une tirade uniquement avec le public en vue de produire un effet dramatique ou humoristique. Il s'agit le plus souvent d'un sentiment, d'une pensée secrète ou d'une information sur le contexte.
+  	</dd>
+  	<dd>
+    		En écriture, une partie de contenu relative au sujet en cours, mais qui, ne s'inscrivant pas dans le flux principal du contenu, est donc présentée à part (souvent dans un encadré sur le côté).
+  	</dd>
+</dl>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- Citations -->
+    <!-- Si une section ou un contenu de niveau bloc (que ce soit un paragraphe, de multiples paragraphes, une liste, etc.) est cité depuis une autre origine, vous pouvez le signaler en le mettant dans un élément <blockquote> et en incluant une URL qui pointe vers la source de la citation dans un attribut cite. Par exemple, le balisage suivant provient de la page MDN pour l'élément <blockquote> : -->
+    	<p>
+  		L'<strong>Élément HTML <code>&lt;blockquote&gt;</code></strong> (ou <em>Élément HTML bloc de citation</em>) indique que le bloc de texte inclus est une citation étendue.
+	</p>
+	
+    <!-- Pour le changer en bloc de citation, on ferait simplement ceci : -->
+    	<blockquote cite="/fr/docs/Web/HTML/Element/blockquote">
+  	<p>
+    		L'<strong>Élément HTML <code>&lt;blockquote&gt;</code></strong> (ou <em>Élément HTML bloc de citation</em>) indique que le bloc de texte inclus est une citation étendue.
+  	</p>
+	</blockquote>
+	
+    <!-- Les citations en ligne fonctionnent exactement de la même manière, sauf que l'on utilise l'élément <q>. Par exemple, le balisage suivant contient une citation de la page MDN <q> : -->
+    	<p>
+  		L'élément citation — <code>&lt;q&gt;</code> — est <q cite="/fr/docs/Web/HTML/Element/q">prévu pour de courtes citations ne nécessitant pas un nouvel alinéa</q>.
+	</p>
+	
+    <!-- Le contenu de l'attribut cite semble utile, malheureusement les navigateurs, lecteurs d'écran, etc. n'en font pas grand chose. Il n'y a pas possibilité de faire afficher différemment au navigateur le contenu d'un cite sans utiliser votre propre JavaScript ou style CSS. Si vous souhaitez rendre disponible la source de la citation sur votre page, la meilleure façon de le faire est d'inclure l'élément <cite> à coté de l'élément citation. Cet élément est vraiment destiné à contenir le nom de la source de la citation — c'est-à-dire le nom du livre ou de la personne auteur de la citation — mais il n'y a aucune raison pour laquelle vous n'avez pas pu lier le texte à l'intérieur de <cite> à la source de la citation d'une manière ou d'une autre : -->
+    	<p>Selon la <a href="/fr/docs/Web/HTML/Element/blockquote">
+		<cite>page blockquote du MDN</cite></a>:
+	</p>
+
+	<p>L'<strong>Élément HTML <code>&lt;blockquote&gt;</code></strong> (ou <em>Élément HTML bloc de citation</em>) indique que le bloc de texte inclus est une citation étendue.
+	</p>
+	
+	<p>L'élément citation — <code>&lt;q&gt;</code> — est <q cite="/fr/docs/Web/HTML/Element/q">prévu pour de courtes citations ne nécessitant pas un nouvel alinéa</q>.</p> — <a href="/fr/docs/Web/HTML/Element/q"><cite>page q du MDN</cite></a>.
+	</p>
+    
+    
+	<!-- Abréviations -->
+	<!-- Un autre élément assez commun rencontré en se promenant dans le Web est l'élément <abbr>. Il s'utilise pour entourer une abréviation ou un acronyme et donner le développement complet du terme (inclus dans un attribut title). Note : Il existe un autre élément, <acronym>, faisant fondamentalement la même chose que <abbr>, destiné spécifiquement aux acronymes plutôt qu'aux abréviations. Il est cependant tombé en désuétude — il n'était pas aussi bien pris en charge dans les navigateurs que <abbr> et sa fonction était si ressemblante qu'on a considéré inutile d'avoir les deux. Il suffit d'utiliser <abbr> à la place. -->
+	<p>Nous utilisons l'<abbr title="Hypertext Markup Language">HTML</abbr> pour structurer nos documents web.
+	</p>
+    
+    
+    	<!-- Balisage des détails de contact
+    	HTML possède l'élément <address> pour baliser des détails de contact. Enveloppez simplement vos coordonnées. Une chose à retenir cependant : l'élément <address> est destiné à marquer les coordonnées de la personne ayant écrit le document HTML et non pas n'importe quelle adresse. Donc, ce qui précède ne serait acceptable que si Chris avait écrit le document sur lequel ce balisage apparaît, par exemple : -->
+    	<address>
+  		<p>Chris Mills, Manchester, The Grim North, UK</p>
+	</address>
+	<address>
+  		<p>Page écrite par <a href="../authors/chris-mills/">Chris Mills</a>.</p>
+	</address>
+    	
+    	
+    	
+    	<!-- Exposants et indices
+	Vous devrez parfois utiliser exposants et indices pour marquer des éléments comme dates, formules chimiques et équations mathématiques de façon à ce qu'ils aient une bonne signification. On effectue ce travail à l'aide des éléments <sup> et <sub>. Par exemple : -->
+	<p>Ma date de naissance est le 1<sup>er</sup> mai 2001.</p>
+	<p>
+	La formule chimique de la caféine est C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2<sub>.
+	</p>
+	<p>
+	Si x<sup>2</sup> égale 9, x doit valoir 3 ou -3.
+	</p>
+
+
+    	<!-- Représentation du code informatique
+	HTML met à votre dispositon un certain nombre d'éléments pour marquer du code informatique :
+
+		<code> : pour marquer des parties génériques de code.
+		<pre> : pour conserver les blancs (généralement dans les blocs de code) — si vous indentez ou mettez des blancs en excès dans votre texte, les navigateurs les ignoreront et vous ne les verrez plus dans le rendu de la page. Par contre si vous enveloppez le texte dans des balises <pre></pre>, les blancs seront rendus tels qu'il se présentent dans votre éditeur de texte.
+		<var> : pour marquer spécifiquement les noms de variables.
+		<kbd> : pour marquer les touches de clavier (et autres types d'entrées) à presser sur l'ordinateur.
+		<samp> : pour marquer une sortie de programme. -->
+	<pre><code>var para = document.querySelector('p');
+
+	para.onclick = function() {
+  		alert('Owww, arrête de me toucher !');
+	}</code></pre>
+
+	<p>
+ 	N'utilisez pas d'éléments de présentation comme <code>&lt;font&gt;</code> et <code>&lt;center&gt;</code>.
+	</p>
+
+	<p>
+  	Dans l'exemple JavaScript ci‑dessus, <var>para</var> représente un élément paragraphe.
+	</p>
+
+	<p>
+	Sélectionnez la totalité du texte avec <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>A</kbd>.
+	</p>
+
+	<pre>$ <kbd>ping mozilla.org</kbd> <samp>PING mozilla.org (63.245.208.195) 56(84) bytes of data. 64 bytes from mozilla.org (63.245.208.195): icmp_seq=1 ttl=46 time=191 ms</samp></pre>
+		
+    	<!-- Balisage des heures et dates
+HTML fournit également l'élément <time> pour marquer les heures et les dates dans un format lisible par machine. Par exemple : -->
+    	<time datetime="2016-01-20">20 janvier 2016</time>
+    	<!-- L'exemple de base ci-dessus ne fournit qu'une simple date lisible par machine, mais il y a beaucoup d'autres options possibles, par exemple : -->
+    	<!-- Simple date standard -->
+	<time datetime="2016-01-20">20 janvier 2016</time>
+	<!-- Juste l'année et le mois -->
+	<time datetime="2016-01">janvier 2016</time>
+	<!-- Juste le mois et les jour -->
+	<time datetime="01-20">20 janvier</time>
+	<!-- Juste l'heure, heure et minutes -->
+	<time datetime="19:30">19h30</time>
+	<!-- Vous pouvez aussi mettre les secondes et les millisecondes&nbsp;! -->
+	<time datetime="19:30:01.856">19h30m1,856s</time>
+	<!-- Date et heure -->
+	<time datetime="2016-01-20T19:30">19h30, le 20 janvier 2016</time>
+	<!-- Date et heure avec décalage de fuseau horaire -->
+	<time datetime="2016-01-20T19:30+01:00">
+	19h30, le 20 janvier 2016 corespond à 20h30 en France</time>
+	<!-- Appel d'un numéro de semains donné -->
+	<time datetime="2016-W04">La 4e semaine de 2016</time>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- Pour mettre en œuvre le marquage sémantique, HTML fournit des balises dédiées que vous pourrez utiliser pour représenter ces parties, par exemple :
+
+	header :-->  <header> <!--
+	barre de navigation :--> <nav> <!--
+	contenu principal :--> <main><!-- avec diverses sous‑sections de contenu représentées à l'aide de des éléments--> <article>, <section>, <div> et <span><!-- (Utilisez <div> et <span> de préférence avec un attribut class approprié, en quelque sorte étiquetez‑les pour pouvoir les cibler plus facilement.).
+	barre latérale :--> <aside> <!--; souvent mise à l'intérieur de l'élément <main>.
+	pied de page :--> <footer>
+	
+	<!-- Voici un exemple complet -->
+	
+	<!doctype html>
+	<html>
+  		<head>
+   		 <meta charset="utf-8" />
+
+    		<title>Intitulé de ma page</title>
+    		<link
+     		 	href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One"
+      		rel="stylesheet"
+      		type="text/css" />
+    		<link rel="stylesheet" href="style.css" />
+
+    		<!-- Les trois lignes ci‑dessous sont un correctif pour que la sémantique HTML5 fonctionne correctement avec les anciennes versions de Internet Explorer-->
+   		<!--[if lt IE 9]>
+      	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+    		<![endif]-->
+  		</head>
+
+  		<body>
+    		<!-- Voici notre en‑tête principale utilisée dans toutes les pages de notre site web -->
+    			<header>
+      			<h1>En-tête</h1>
+    			</header>
+
+    			<nav>
+      		<ul>
+        			<li><a href="#">Accueil</a></li>
+        			<li><a href="#">L'équipe</a></li>
+        			<li><a href="#">Projets</a></li>
+        			<li><a href="#">Contact</a></li>
+      		</ul>
+
+      	<!-- Un formulaire de recherche est une autre façon de naviguer de façon non‑linéaire dans un site. -->
+
+      		<form>
+        			<input type="search" name="q" placeholder="Rechercher" />
+        			<input type="submit" value="Lancer !" />
+      		</form>
+    			</nav>
+
+    			<!-- Ici nous mettons le contenu de la page -->
+    			<main>
+      		<!-- Il contient un article -->
+      		<article>
+        		<h2>En-tête d'article</h2>
+        		<p>
+          		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Donec a diam lectus. Set sit amet ipsum mauris. Maecenas congue ligula as quam viverra nec consectetur ant hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur.
+        		</p>
+
+        		<h3>Sous‑section</h3>
+        		<p>
+          		Donec ut librero sed accu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor.
+        		</p>
+        		<p>
+          		Pelientesque auctor nisi id magna consequat sagittis. Curabitur dapibus, enim sit amet elit pharetra tincidunt feugiat nist imperdiet. Ut convallis libero in urna ultrices accumsan. Donec sed odio eros.
+        		</p>
+
+        		<h3>Autre sous‑section</h3>
+        		<p>
+          		Donec viverra mi quis quam pulvinar at malesuada arcu rhoncus. Cum soclis natoque penatibus et manis dis parturient montes, nascetur ridiculus mus. In rutrum accumsan ultricies. Mauris vitae nisi at sem facilisis semper ac in est.
+        		</p>
+        		<p>
+          		Vivamus fermentum semper porta. Nunc diam velit, adipscing ut tristique vitae sagittis vel odio. Maecenas convallis ullamcorper ultricied. Curabitur ornare, ligula semper consectetur sagittis, nisi diam iaculis velit, is fringille sem nunc vet mi.
+        		</p>
+      		</article>
+
+      		<!-- Le contenu « à côté » peut aussi être intégré dans le contenu principal -->
+      		<aside>
+        		<h2>En relation</h2>
+        		<ul>
+          			<li><a href="#">Combien j'aime être près des rivages</a></li>
+          			<li><a href="#">Combien j'aime être près de la mer</a></li>
+          			<li><a href="#">Bien que dans le nord de l'Angleterre</a></li>
+          			<li><a href="#">Il n'arrête jamais de pleuvoir</a></li>
+          			<li><a href="#">Eh bien…</a></li>
+        		</ul>
+      		</aside>
+    			</main>
+
+    			<!-- Et voici notre pied de page utilisé sur toutes les pages du site -->
+    			<footer>
+      			<p>©Copyright 2050 par personne. Tous droits reversés.</p>
+    			</footer>
+  		</body>
+	</html>
+	
+	
+	<!-- Les éléments <br> et <hr> -->
+	<!-- <br> crée un saut de ligne dans un paragraphe ; c'est le seul moyen de forcer une structure rigide quand vous voulez obtenir une suite de lignes courtes fixes, comme dans une adresse postale ou un poème. Par exemple : -->
+	<p>
+  		Il y avait une fois une fille nommée Nell<br />
+ 		Qui aimait écrire du HTML<br />
+  		Mais ses structures et sémantiques affligeantes<br />
+  		rendaient de ses marquages la lecture inélégante.
+	</p>
+	<!--Les éléments <hr> créent un trait horizontal dans le document marquant un changement thématique dans le texte (comme un changement de sujet ou de scène). Visuallement, c'est juste un trait horizontal, comme dans cet exemple :  -->
+	<p>
+  		Ron était acculé dans un angle par des Netherbeasts en maraude. Effrayé, mais déterminé à protéger ses amis, il a levé sa baguette et s'est préparé à se battre, espérant que son appel de détresse serait entendu.
+	</p>
+	<hr />
+	<p>
+  		Pendant ce temps, Harry était assis à la maison, regardant sa déclaration de redevances et réfléchissant à la sortie du prochaine épisode de la fiction, quand une lettre de détresse enchantée passa par sa fenêtre et atterrit sur ses genoux. Il la lut à la hâte et, se dressant brusquement, « mieux vaut retourner au travail alors » se dit-il.
+	</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- --------------------------------------------------------------------------->
+<!-- --------------------------------------------------------------------------->
+<!-- --------------------------------------------------------------------------->
+<!-- -Multimédia et Intégration------------------------------------------------->
+
+
+<!--  Images  -->
+<img src="images/dinosaur.jpg" />
+<img
+  src="images/dinosaur.jpg"
+  alt="The head and torso of a dinosaur skeleton;
+  		it has a large head with long sharp teeth" />
+<!-- Vous pouvez vous servir des attributs width et height
+ pour spécifier la largeur et la hauteur de votre image -->
+<img
+  src="images/dinosaur.jpg"
+  alt="The head and torso of a dinosaur skeleton;
+				  it has a large head with long sharp teeth"
+  width="400"
+  height="341" />
+<!-- Pour donner un titre à vos images vous pouvez aussi 
+ ajouter un attribut "title" aux images -->
+<img
+  src="images/dinosaur.jpg"
+  alt="The head and torso of a dinosaur skeleton;
+          it has a large head with long sharp teeth"
+  title="A T-Rex on display in the Manchester University Museum" />
+
+<!--  Légendes  -->
+<!-- Pour ajouter une legende à une image, utiliser <figure> et <figcaption> -->
+<figure>
+	<img
+	  src="images/dinosaur.jpg"
+	  alt="The head and torso of a dinosaur skeleton;
+				  it has a large head with long sharp teeth"
+	  width="400"
+	  height="341" />
+	<figcaption>
+	  A T-Rex on display in the Manchester University Museum.
+	</figcaption>
+</figure>
+<!-- Une technique permettant ajouter une légende à une image:
+ avantage: Ça contient ce que vous voulez et c'est aisément stylisable en CSS
+ inconveniant: Il n'y a rien de sensé qui relie l'image à sa légende.
+ Ce qui peut poser des problèmes à un lecteur d'écran. Par exemple,
+ quand vous avez 50 images, quelle légende va avec quelle image ? -->
+<div class="figure">
+	<img
+	  src="images/dinosaur.jpg"
+	  alt="The head and torso of a dinosaur skeleton;
+			  it has a large head with long sharp teeth"
+	  width="400"
+	  height="341" />
+  
+	<p>A T-Rex on display in the Manchester University Museum.</p>
+</div>
+
+<!-- Images d'arrière plan -->
+<!-- Les propriétés CSS background-image et background, sont utilisées
+ pour contrôler le placement de l'image d'arrière-plan. Par exemple,
+ pour placer une image d'arrière-plan sur chaque paragraphe de la page,
+ vous pourriez faire ceci (dans un fichier css): -->
+p {
+	background-image: url("images/dinosaur.jpg");
+  }
+
+
+
+
+
+<!-- Il faut lire attentivement les chapitres sur les videos, audios iframes il y a
+ beaucoups d'information importante -->
+
+<!-- Video -->
+<!-- L'élément <video> vous permet d'intégrer de la vidéo très
+	facilement. Les fonctionnalités de ce code sont :
+
+		src
+		De la même manière que pour l'élément <img>, l'attribut src (source)
+		contient le chemin vers la vidéo que vous voulez intégrer. Cela
+		fonctionne de la même manière.
+
+		controls
+		Les utilisateurs doivent avoir un contrôle sur la lecture de la vidéo
+		ou de l'audio. (c'est particulièrement crucial pour les gens ayant de
+		l'épilepsie.) Vous devez vous servir de l'attribut controls pour
+		appeler l'interface de contrôle du navigateur ou construire votre
+		propre interface en utilisant l'API JavaScript adéquat. Au minimum,
+		l'interface doit avoir un contrôle de démarrage et d'arrêt (start/stop)
+		du média et un pour ajuster le volume.
+
+		Le paragraphe dans la balise <video>
+		Cela peut s'appeler solution de repli ou contenu de secours (fallback content)
+		— si le navigateur accédant à la page ne supporte pas l'élément <video>,
+		cela offre un texte alternatif qui peut être ce que vous voulez ;
+		dans ce cas nous avons mis un lien direct au fichier vidéo, afin que
+		l'utilisateur puisse au moins y accéder sans avoir à se soucier du
+		navigateur qu'il utilise.
+	En voici un exemple : -->
+<video src="rabbit320.webm" controls>
+	<p>
+	  Votre navigateur ne prend pas en charge les vidéos HTML5. Voici, à la place,
+	  un <a href="rabbit320.webm">lien sur la vidéo</a>.
+	</p>
+</video>
+<!-- Au cas où le navigateur ne prend pas en charge, certain fichier video on peut
+ proposer plusieurs source, en procedant comme ça: -->
+<video controls>
+	<source src="rabbit320.mp4" type="video/mp4" />
+	<source src="rabbit320.webm" type="video/webm" />
+	<p>
+	  Votre navigateur ne prend pas en charge les vidéos HTML5. Voici, à la place,
+	  un <a href="rabbit320.mp4">lien sur la vidéo</a>.
+	</p>
+</video>
+
+<!-- Voici certaines fonctionnalités :
+
+		width et height
+		Il est possible de contrôler la taille de la vidéo soit avec ces attributs,
+		soit avec le CSS. Dans les deux cas, les vidéos conservent le rapport
+		largeur‑hauteur natif — désigné sous le vocable rapport de proportions.
+		Si ce dernier ne correspond pas aux tailles indiquées, la vidéo occupera
+		tout l'espace horizontal et l'espace non rempli sera de la couleur d'arrière
+		plan unie par défaut.
+
+		autoplay
+		Cet attribut permet de lancer immédiatement la lecture de l'audio ou de la
+		vidéo pendant que le reste de la page se charge. Nous vous déconseillons
+		d'utiliser la lecture automatique de vidéos (ou audio) sur vos sites, car
+		les utilisateurs peuvent trouver cela vraiment ennuyeux.
+
+		loop
+		Cet attribut permet de relancer en boucle la lecture de la vidéo (ou de
+		l'audio). Cette façon de procéder pouvant être mal perçue, ne l'utilisez
+		que si c'est vraiment nécessaire.
+
+		muted
+		Cet attribut coupe le son de la vidéo par défaut.
+
+		poster
+		Cet attribut prend comme valeur l'URL d'une image affichée avant la lecture
+		de la vidéo. Il s'utilise en tant que logo de démarrage ou de publicité.
+
+		preload
+		Cet attribut s'utilise pour mettre en tampon les gros fichiers. Il peut
+		prendre 3 valeurs :
+
+			"none" : ne pas mettre le fichier dans un tampon
+			"auto" : mettre le fichier média dans un tampon
+			"metadata" : ne mettre que les métadonnées dans le tampon -->
+<video
+	controls
+	width="400"
+	height="400"
+	autoplay
+	loop
+	muted
+	poster="poster.png">
+
+	<source src="rabbit320.mp4" type="video/mp4" />
+	<source src="rabbit320.webm" type="video/webm" />
+			<p>
+			  Votre navigateur ne prend pas en charge les vidéos HTML5. Voici, 
+			  à la place,
+			  un <a href="rabbit320.mp4">lien à la vidéo</a>.
+			</p>
+</video>
+
+
+
+<!-- Audio -->
+<!-- L'élément <audio> fonctionne exactement de la même manière que l'élément
+	<video>, mais avec quelques menues différences :
+		L'élément <audio> ne prend pas en charge les attributs width/height
+		— redisons‑le, il n'y a pas de composant visuel, il n'y donc pas lieu
+		d'assigner une largeur ou une hauteur.
+		Il ne prend pas en charge non plus l'attribut poster — toujours pas
+		de composant visuel.
+Un exemple classique ressemble à ceci : -->
+<audio controls>
+	<source src="viper.mp3" type="audio/mp3" />
+	<source src="viper.ogg" type="audio/ogg" />
+	<p>
+	  Votre navigateur ne prend pas en charge l'audio HTML5. Voici, à la place, un
+	  <a href="viper.mp3">lien sur l'audio</a>.
+	</p>
+</audio>
+
+
+<!-- Afficher du texte dans une vidéo -->
+<!-- WebVTT est un format d'écriture de fichiers texte ; il contient nombre de
+chaînes de texte avec des métadonnées comme l'instant dans la vidéo où vous
+souhaitez l'affichage du texte, et même une information succinte sur le style
+et la position de celui‑ci. Ces chaînes textuelles sont appelées des marqueurs,
+les plus courants étant :
+
+	les sous‑titres (subtitles)
+	Traductions d'éléments d'une langue étrangère pour les personnes ne comprenant
+	pas les paroles de l'audio.
+
+	les légendes (captions)
+	Transcriptions synchrones de dialogues ou de descriptions de sons significatifs,
+	pour permettre aux personnes ne pouvant entendre le son de comprendre ce qui
+	se passe.
+
+	les descriptions programmées (descriptions)
+	Textes convertis en audio, pour aider les personnes avec des défauts de vision.
+
+Un fichier WebVTT typique ressemblera à : -->
+<!------------------------------------------>
+WEBVTT
+
+1
+00:00:22.230 --> 00:00:24.606
+Ceci est le premier sous‑titre.
+
+2
+00:00:30.739 --> 00:00:34.074
+Ceci est le deuxième.
+<!------------------------------------------>
+
+<!-- Pour qu'il soit affiché avec la diffusion du média HTML, il faut :
+Enregistrer le fichier avec l'extension .vtt dans un endroit sensé.
+Lier le fichier .vtt avec l'élément <track>. <track> doit être placé 
+entre les balises <audio> ou <video>, mais après tous les éléments <source>.
+Utilisez l'attribut kind pour préciser si les marqueurs sont subtitles,
+captions ou descriptions. Plus loin, utilisez l'attribut srclang pour
+indiquer au navigateur la langue dans laquelle sont écrit les sous‑titres.
+Voici un exemple : -->
+<video controls>
+  <source src="example.mp4" type="video/mp4" />
+  <source src="example.webm" type="video/webm" />
+  <track kind="subtitles" src="subtitles_en.vtt" srclang="en" />
+</video>
+
+
+<!-- iframe -->
+<!-- Cela permet intégrer des pages d'autres site, ou même uniquement
+ des vidéo pris sur un autre site, etc...
+	
+ 	allowfullscreen
+	Si activé, <iframe> pourra être mis en mode plein écran avec Full
+	Screen API (un peu hors‑sujet dans cet article).
+
+	frameborder
+	Si défini à la valeur 1, demande à l'explorateur de tracer une
+	bordure entre cadres, c'est le comportement par défaut. 0 supprime
+	la bordure. L'utilisation d'un tel attribut n'est plus trop recommandée,
+	car le même résultat peut être obtenu en mieux avec border: none; dans le CSS.
+
+	src
+	Cet attribut, comme avec <video> ou <img>, contient un chemin vers
+		l'URL du document à intégrer.
+
+	width et height
+	Ces attributs définissent la largeur et la hauteur souhaitée pour <iframe>.
+
+	Contenu de repli
+	Comme pour d'autres éléments semblables, tels <video>, vous pouvez
+	préciser un contenu de repli entre les balises ouvrantes et
+	fermantes <iframe></iframe> qui seront affichées si l'explorateur
+	ne prend pas en charge <iframe>. Dans notre cas nous avons mis un
+	lien vers une page. Il est peu vraisemblable que vous rencontriez de
+	nos jours un explorateur qui ne prenne pas en charge <iframe>.
+
+	sandbox
+	Cet attribut n'est fonctionnel que dans des explorateurs un peu plus
+	récents, contrairement aux autres attributs de <iframe> (par ex. IE 10
+	et au‑delà). Il requiert des paramètres de sécurité renforcés ; nous vous
+	en disons plus dans le paragraphe suivant.
+
+Note : Afin d'améliorer la vitesse, il est pertinent de définir l'attribut src
+de iframe avec JavaScript après que le chargement du contenu principal est effectué.
+La page est utilisable plus tôt et le temps de chargement officiel de la page est
+diminué (une métrique SEO importante).
+Les iframes constitus un sérieux problème de securité à lire attentivement sur
+le chapitre des iframes.
+Pour minimiser la possibilité que des attaquants commettent des actions néfastes
+sur votre site Web, vous deviez donner au contenu intégré uniquement les
+permissions nécessaires pour qu'il fasse son travail. Bien sûr, cela est aussi
+valable pour votre propre contenu. Le conteneur de code, dans lequel il peut être
+utilisé de manière appropriée — ou pour des tests — sans pouvoir causer aucun
+dommage (accidentel ou malveillant) au reste de la base du code s'appelle un
+sandbox (bac à sable).
+Un contenu en dehors du « bac à sable » peut faire beaucoup trop de choses (exécuter
+du JavaScript, soumettre des formulaires, des fenêtres « popup », etc.). Par défaut,
+vous devez imposer toute restriction disponible avec un attribut sandbox sans
+paramètres, comme montré dans notre exemple précédent.
+Si c'est absolument nécessaire, vous pouvez ajouter des permissions une à une
+(en tant que valeur de l'attribut sandbox="")
+ -->
+ <iframe
+ 	src="https://developer.mozilla.org/fr/docs/Glossary"
+ 	width="100%"
+ 	height="500"
+ 	frameborder="0"
+ 	allowfullscreen
+ 	sandbox>
+ 	<p>
+ 	  <a href="https://developer.mozilla.org/fr/docs/Glossary">
+		 Lien de repli pour les navigateurs ne prenant pas en charge iframe
+	   </a>
+	 </p>
+</iframe>
+
+
+<!-- Les éléments <embed> et <object>, des technologies dépassées
+Les éléments <embed> et <object> ont une fonction différente de <iframe> — ces
+éléments sont des outils d'intégration à caractère général pour importer
+plusieurs types de contenu externe ; cela comprend des technologies de
+greffons comme Java Applets ou Flash, PDF (affichable dans le navigateur
+avec un greffon PDF) et même du contenu comme des vidéos, du SVG ou des images !
+Si vous avez besoin d'intégrer du contenu de greffon (Un greffon est un 
+logiciel qui permet d'avoir accès à des contenus que le navigateur n'est 
+pas capable de lire de manière native.), 
+vous aurez besoin de ce minimum d'information :
+
+									<embed>					<object>
+
+URL du contenu à intégrer			src						data
+
+type de media précis du				type					type
+contenu intégré
+
+hauteur et largeur (en pixels		height width			height width
+CSS) de la boîte contrôlée
+par le greffon
+
+noms et valeurs à passer en			attributs adéquats		éléments de la
+paramètre au greffon				avec ces noms et 		simple balise
+									valeurs					<param>, contenus
+															dans <object>
+
+contenu HTML indépendant en			non pris en charge		contenu dans
+repli en cas de ressources			(<noembed> a été		<object>, après
+inaccessibles						abandonné)				les éléments <param>
+	-->
+
+
+
+<!-- SVG -->
+<!-- SVG est un langage basé sur XML, utilisé pour décrire des images vectorielles.
+Il s'agit d'un langage à balises, comme HTML, où les différents éléments permettent
+de décrire les formes qu'on veut dans l'image et les effets qui s'appliquent à ces
+formes. SVG sert à baliser des graphiques et pas du contenu. SVG définit des
+éléments pour créer des formes simples, comme <circle> (pour dessiner un cercle)
+et <rect> (pour dessiner un rectangle), ainsi que des éléments pour des formes plus
+complexes comme <path> et <polygon>. On aura d'autres éléments pour les
+fonctionnalités les plus avancées de SVG, comme <feColorMatrix> (qui permet
+d'appliquer une transformation des couleurs à l'aide d'une matrice), <animate>
+(qui permet d'animer certaines parties de l'image), et <mask> (qui permet
+d'appliquer des masques par-dessus l'image).
+Dans le fragment de code qui suit, on crée un cercle et un rectangle : -->
+<svg
+	version="1.1"
+	baseProfile="full"
+	width="300"
+	height="200"
+	xmlns="http://www.w3.org/2000/svg">
+	<rect width="100%" height="100%" fill="black" />
+	<circle cx="150" cy="100" r="90" fill="blue" />
+</svg>
+
+
+<!-- Ajputer du SVG -->
+
+<!-- Avec <img/> 
+Inconvénients
+L'image ne peut pas être manipulée avec JavaScript.
+Si on souhaite contrôler le contenu SVG avec SS, il
+faut inclure des styles CSS en incise dans le code
+SVG (les feuilles de styles externes appelées depuis
+le fichier SVG n'auront pas d'effet).
+L'image ne peut pas être mise en forme avec les pseudo-classes CSS comme :focus. -->
+<img
+  src="equilateral.svg"
+  alt="un triangle avec trois côtés égaux"
+  height="87"
+  width="100" />
+<!-- Pour les navigateurs qui ne prennent pas en charge SVG (IE8 et antérieur,
+Android 2.3 et antérieur), vous pouvez pointer l'attribut src vers un fichier
+PNG ou JPH et utiliser un attribut srcset (pris en charge par les navigateurs
+plus récents) pour faire référence à l'image SVG. Ainsi, seuls les navigateurs
+qui prennent en charge srcset chargeront le fichier SVG et les navigateurs plus
+anciens chargeront le fichier PNG : -->
+<img
+  src="equilateral.png"
+  alt="un triangle avec trois côtés égaux"
+  srcset="equilateral.svg" />
+<!-- Vous pouvez aussi utiliser des SVG comme images d'arrière-plan en CSS.
+Dans le fragment de code qui suit, les navigateurs plus anciens appliqueront
+le PNG et les plus récents chargeront le SVG : 
+
+	background: url("image_alternative.png") no-repeat center;
+	background-image: url("image.svg");
+	background-size: contain;
+-->
+
+<!-- Inclure du code SVG dans le document HTML
+ Avantages
+Placer le SVG en incise permet d'économiser une requête HTTP et peut donc
+réduire légèrement le temps de chargement.
+Vous pouvez affecter des classes et des identifiants aux éléments SVG afin
+de le mettre en forme à l'aide de CSS (directement depuis le SVG ou depuis
+les règles CSS qui s'appliquent au document). Vous pouvez en fait utiliser
+tout attribut SVG de présentation comme une propriété CSS.
+C'est la seule méthode qui permet d'utiliser les pseudo-classes CSS (comme :focus)
+et les animations CSS sur une image SVG.
+Le contenu SVG peut être transformé en hyperlien en l'insérant dans un élément <a>.
+ Inconvénients
+Cette méthode s'applique uniquement si le SVG est utilisé à un seul endroit.
+Dupliquer du contenu intégré de cette manière compliquera largement la maintenance.
+Tout code SVG supplémentaire augmentera la taille du fichier HTML.
+Le navigateur ne pourra pas mettre en cache le SVG en incise, comme il peut le
+faire pour les autres images. Aussi, toute page qui inclurait cette image en incise
+(dupliquée) ne serait pas chargée plus rapidement.
+Un contenu de secours peut être inclus dans un élément <foreignObject>, mais les
+navigateurs qui prennent en charge SVG téléchargeront quand même l'image de secours.
+C'est à vous d'estimer si le coût supplémentaire du chargement de contenu de secours
+est pertinent pour la prise en charge des anciens navigateurs.
+-->
+<svg width="300" height="200">
+	<rect width="100%" height="100%" fill="green" />
+</svg>
+
+<!-- Inclure du contenu SVG dans une <iframe> 
+Inconvénients
+Cette méthode n'est pas préconisée cependant.
+Il n'y a pas de mécanisme pour charger un contenu alternatif en cas d'absence de
+prise en charge du SVG. Le contenu alternatif de l'<iframe> sera uniquement affiché
+si le navigateur ne prend pas en charge <iframe>.
+De plus, sauf si le SVG et la page courante partagent bien la même origine,
+JavaScript ne pourra pas être utilisé sur la page web pour manipuler le SVG.
+-->
+<iframe src="triangle.svg" width="500" height="500" sandbox>
+	<img
+	  src="triangle.png"
+	  alt="Un triangle avec trois côtés de longueur différente" />
+</iframe>
+
+
+
+<!-- Commutations de résolution : tailles différentes -->
+<!-- L'élément standard <img> vous permet classiquement de ne faire pointer le
+navigateur que vers un seul fichier source. Mais il est possible d'utiliser
+deux nouveaux attributs — srcset et sizes — permettant de fournir plusieurs
+images source avec des indications pour permettre au navigateur de faire le bon
+choix. 
+Les attributs srcset et sizes paraissent complexes, mais ils ne sont pas difficiles
+à comprendre si vous les formatez comme indiqué ci-dessous, avec une partie différente
+de la valeur de l'attribut sur chaque ligne. Chaque valeur contient une liste séparée
+par des virgules et chaque partie de la liste est composée de trois sous-parties.
+Passons maintenant en revue leur contenu.
+
+	srcset
+	définit l'ensemble des images offertes au choix du navigateur, et la taille de
+	chaque image. Avant chaque virgule, nous avons écrit :
+		-un nom de fichier image (elva-fairy-480w.jpg),
+		-un espace,
+		-la largeur intrinsèque en pixels (480w) — notez l'utilisation de l'unité w,
+		 et non px comme vous auriez pu penser. C'est la taille réelle de l'image;
+		 qui peut être trouvée en examinant les propriétés du fichier image sur
+		 l'ordinateur (par exemple sur un Mac, sélectionnez l'image dans le Finder,
+		 puis appuyez sur Cmd + I pour faire apparaître l'écran des infos).
+	
+	sizes
+	définit un ensemble de conditions pour le média (par ex. des largeurs d'écran)
+	et indique quelle taille d'image serait la plus adaptée si certaines conditions
+	sont satisfaites — ce sont les conditions dont nous avons parlé plus haut.
+	Dans ce cas, nous écrivons avant chaque virgule :
+		-une condition pour le média ((max-width:600px)) — vous pourrez en savoir
+		 plus à ce propos dans l'article sur les CSS, mais pour le moment disons
+		 simplement que cette condition pour le média décrit un état possible de
+		 l'écran. Dans notre cas, nous disons « si la largeur de fenêtre est de 600
+		 pixels ou moins »,
+		-une espace,
+		-la largeur de la place occupée par l'image si la condition pour le média
+		 est vraie (480px).
+
+Note : Pour définir une largeur d'emplacement, vous pouvez indiquer une taille
+absolue (px, em) ou relative au viewport (vw), mais pas en pourcentage. Vous avez
+peut‑être noté que la dernière largeur d'emplacement ne comporte pas d'indication
+pour le média — c'est la valeur par défaut retenue quand aucune des conditions n'est
+vraie). Le navigateur ignore tout ce qui suit dès la première condition concordante ;
+donc soyez attentif à l'ordre de ces conditions pour le média.
+Ainsi, une fois ces attributs en place, le navigateur va :
+	-noter la largeur du périphérique,
+	-vérifier quelle est la première condition vraie pour le média dans la liste des
+	 tailles,
+	-noter la largeur d'emplacement demandée par le média,
+	-charger l'image référencée dans la liste srcset qui est la plus proche de la
+	 taille choisie.
+Et c'est tout ! Donc à ce stade, si un navigateur prenant en charge une largeur de
+vue de 480px charge la page, la condition pour le média (max-width: 600px) sera
+vraie, donc une largeur d'emplacement de 480px sera choisie, donc le fichier
+elva-fairy-480w.jpg sera chargé, car sa largeur intrinsèque (480w) est celle qui
+est la plus proche de 480px. L'image 800px a une taille de 128 Ko sur disque alors
+que la version 480 px n'occupe que 63 Ko — une économie de 65 Ko. Imaginez
+maintenant qu'il s'agisse d'une page avec beaucoup d'images. L'utilisation de cette
+technique peut permettre aux personnes naviguant sur mobile d'économiser beaucoup
+de bande passante.
+Lire le chapitre sur les images adaptatives, des informations utile sur l'affichage
+de la taille du viewport dans la console JavaScript
+( document.querySelector("html").clientWidth ) et du developpement de l'affichage
+d'un site sur mobile tout en étant sur un navigateur PC sont données.
+-->
+<img
+  srcset="elva-fairy-480w.jpg 480w, elva-fairy-800w.jpg 800w"
+  sizes="(max-width: 600px) 480px, 800px"
+  src="elva-fairy-800w.jpg"
+  alt="Elva dressed as a fairy" />
+
+<!-- Note : Dans l'élément <head> du document, vous trouvez la ligne  -->
+<meta name="viewport" content="width=device-width">
+<!-- ceci force les navigateurs mobiles de prendre la largeur réelle de
+leur vue pour charger des pages web (certains navigateurs mobiles mentent
+à propos de la largeur de leur vue, et à la place chargent des pages pour une
+vue plus large, puis rétrécissent la page chargée, ce qui n'est pas vraiment
+une aide pour les pages adaptatives ou pour la conception). -->
+
+
+
+
+<!-- Commutation de résolution : même taille, résolutions différentes -->
+<!-- Si votre ordinateur prend en charge plusieurs résolutions d'affichage,
+mais que tout le monde voit l'image avec la même taille effective sur l'écran,
+vous pouvez permettre au navigateur de choisir une image de résolution appropriée
+en utilisant srcset avec x-descriptors et sans sizes — une syntaxe un peu plus
+facile en quelque sorte -->
+<img
+  srcset="elva-fairy-320w.jpg, elva-fairy-480w.jpg 1.5x, elva-fairy-640w.jpg 2x"
+  src="elva-fairy-640w.jpg"
+  alt="Elva habillée en fée" />
+<!-- Dans cet exemple, le CSS suivant est appliqué à l'image de façon à ce qu'elle
+ait une largeur de 320 pixels à l'écran (également nommée pixels CSS) :
+		css
+		img {
+			width: 320px;
+		}
+Dans ce cas, sizes n'est pas nécessaire — le navigateur détermine simplement la
+résolution d'affichage de l'écran et montre l'image la plus appropriée référencée
+dans srcset. Donc si le dispositif accédant à la page a un affichage standard/basse
+résolution, avec un pixel de dispositif représentant chaque pixel CSS, l'image
+elva-fairy-320w.jpg sera chargée (le 1x est implicite, donc vous n'avez pas besoin
+de l'inclure.) Si le dispositif a une haute résolution de deux pixels de dispositif
+par pixel CSS ou plus, l'image elva‑fairy-640w.jpg sera chargée. L'image 640px a
+une taille de 93 Ko, alors que l'image 320 px n'a qu'une taille de 39 Ko.
+-->
+
+
+
+
+<!-- Décision de nature artistique -->
+<!-- Pour résumer, le problème des décisions de nature artistique réside dans le
+choix des modifications à apporter à l'image selon les diverses tailles d'affichage.
+Par exemple, si un instantané d'un grand plan paysager avec une personne au milieu,
+correctement affiché sur un site web avec le navigateur d'un ordinateur de bureau,
+est rétréci lorsque ce même site est visionné sur un navigateur de mobile, cet
+instantané risque d'avoir mauvaise mine, car la personne sera vraiment minuscule et
+difficile à voir. Il serait probablement préférable de montrer sur un mobile une
+image portrait plus petite d'un zoom sur la personne. L'élément <picture> nous
+permet d'implémenter ce type de solution.
+Considerons cette image qui doit nécéssairement avoir un affichage particulier sur
+les téléphones mobile : -->
+<img
+  src="elva-800w.jpg"
+  alt="Chris debout tenant sa fille Elva dans ses bras" />
+<!-- Arrangeons cela avec <picture> ! Comme pour <vidéo> et <audio>, l'élément
+<picture> est une enveloppe conteneur de plusieurs éléments <source> ; ces éléments
+indiquent plusieurs sources différentes entre lesquelles le navigateur peut
+choisir ; ils sont suivis du très important élément <img> -->
+<picture>
+	<source media="(max-width: 799px)" srcset="elva-480w-close-portrait.jpg" />
+	<source media="(min-width: 800px)" srcset="elva-800w.jpg" />
+	<img
+	  src="elva-800w.jpg"
+	  alt="Chris debout tenant sa fille Elva dans ses bras" />
+</picture>
+<!-- 	Les éléments <source> incluent un attribut media qui contient une condition
+		pour le média — comme avec le premier exemple srcset, ces conditions sont
+		testées pour décider de l'image à montrer — le premier qui renvoie true
+		sera affiché. Dans notre cas, si la largeur de la fenêtre est de 799 px ou
+		moins, l'image du premier élément <source> sera affichée. Si la largeur de
+		la fenêtre est de 800 px plus, ce sera la deuxième.
+		Les attributs srcset contiennent le chemin vers l'image à afficher. Noter
+		que comme avec <img> plus haut, <source> peut prendre plusieurs attributs
+		srcset référençant plusieurs images, ainsi qu'un attribut sizes également.
+		Ainsi, non seulement vous pouvez offrir plusieurs images par l'intermédiaire
+		d'un élément <picture>, mais aussi offrir plusieurs résolutions pour chacune
+		d'entre elles. En réalité, vous ne ferez pas ce type de montage très souvent.
+		Dans tous les cas, vous devez fournir un élément <img>, avec src et alt,
+		juste avant </picture>, sinon aucune image n'apparaîtra. Cet élément ménage
+		un cas par défaut appliqué si aucune des conditions de média ne renvoie vrai
+		(vous pouvez réellement enlever le deuxième élément <source> dans cet exemple),
+		et une solution de repli pour les navigateurs qui ne prennent pas en charge
+		l'élément <picture>.
+Note : Vous ne devez utiliser l'attribut media qu'avec un scénario de décision de
+nature artistique ; quand vous utilisez media, ne mettez pas de conditions pour
+le média avec l'attribut sizes. -->
+
+
+
+<!-- Utilisez largement les formats d'image modernes -->
+<!-- Il existe plusieurs nouveaux formats d'image très intéressants (comme WebP
+et JPEG-2000) qui sont à la fois de taille réduite et de haute qualité. Toutefois,
+la prise en charge par les navigateurs est ponctuelle.
+<picture> nous permet de servir encore les plus vieux navigateurs. Vous pouvez
+indiquer le type MIME dans les attributs type de façon à ce que le navigateur
+puisse immédiatement rejeter les types de fichiers non pris en charge : -->
+<picture>
+	<source type="image/svg+xml" srcset="pyramid.svg" />
+	<source type="image/webp" srcset="pyramid.webp" />
+	<img
+	  src="pyramid.png"
+	  alt="Pyramide régulière constituée de quatre triangles équilatéraux" />
+</picture>
+<!-- 	N'utilisez pas l'attribut media, sauf à devoir prendre une décision de
+		nature artistique.
+		Dans un élément <source>, vous ne pouvez vous référer qu'à des images du
+		type déclaré avec type.
+		Comme précédemment, il n'y a pas d'inconvénient à utiliser des listes avec
+		une virgule comme séparateur avec srcset et sizes, selon les besoins. -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		
+<!-- Les tableaux -->
+<!-- Ceci vas afficher une seul ligne-->
+<table>
+	<td>Bonjour, je suis votre première cellule</td>
+	<td>je suis votre deuxième cellule</td>
+	<td>je suis votre troisième cellule</td>
+	<td>je suis votre quatrième cellule</td>
+</table>
+<!-- Pour afficher des colones on utilise <tr> -->
+	<table>
+		<tr>
+		  <td>&nbsp;</td>
+		  <td>Knocky</td>
+		  <td>Flor</td>
+		  <td>Ella</td>
+		  <td>Juan</td>
+		</tr>
+		<tr>
+		  <td>Race</td>
+		  <td>Jack Russell</td>
+		  <td>Poodle</td>
+		  <td>Streetdog</td>
+		  <td>Cocker Spaniel</td>
+		</tr>
+	</table>
+<!-- <th> en-tête du tableau — cellules spéciales qui débutent une ligne ou
+une colonne et définissent le type de données que contiennent la rangée ou
+la colonne, Il fonctionne exactement comme la balise <td>, à ceci près qu'il
+indique un en-tête et non une cellule normale.-->
+<table>
+	<tr>
+        <td>&nbsp;</td>
+        <th>Knocky</th>
+        <th>Flor</th>
+        <th>Ella</th>
+        <th>Juan</th>
+      </tr>
+      <tr>
+        <th>Breed</th>
+        <td>Jack Russell</td>
+        <td>Poodle</td>
+        <td>Streetdog</td>
+        <td>Cocker Spaniel</td>
+      </tr>
+      <tr>
+        <th>Age</th>
+        <td>16</td>
+        <td>9</td>
+        <td>10</td>
+        <td>5</td>
+      </tr>
+</table>
+<!-- Étendre des cellules sur plusieurs lignes ou colonnes
+colspan="2" génère une cellule sur deux colonnes
+rowspan="2" génère une cellule sur deux lignes
+Ici colspan met « Animaux », « Hippopotame » et « Crocodile » sur deux colonnes.
+Et rowspan met « Cheval » and « Poulet » sur deux lignes.-->
+<table>
+	<tr>
+	  <th colspan="2">Animals</th>
+	</tr>
+	<tr>
+	  <th colspan="2">Hippopotamus</th>
+	</tr>
+	<tr>
+	  <th rowspan="2">Horse</th>
+	  <td>Mare</td>
+	</tr>
+	<tr>
+	  <td>Stallion</td>
+	</tr>
+	<tr>
+	  <th colspan="2">Crocodile</th>
+	</tr>
+	<tr>
+	  <th rowspan="2">Chicken</th>
+	  <td>Hen</td>
+	</tr>
+	<tr>
+	  <td>Rooster</td>
+	</tr>
+  </table>
+<!-- Pour mettre un style sur une colonne entière
+Les éléments <col> sont utilisés dans un conteneur <colgroup> juste en-dessous de
+la balise <table> -->
+  <table>
+	<colgroup>
+	  <col /> 									<!-- Ici c'est la colonne 1, 
+	  											aucun effet n'est appliqué.
+												Nous n'appliquons pas de style
+												pour la première colonne, mais
+												nous devons inclure un élément
+												<col> vide — si nous ne le faisons
+												pas, le style indiqué ci après
+												( <col style="background-color: yellow" />
+												 juste en bas )
+												s'appliquera à la première colonne.-->
+
+	  <col style="background-color: yellow" />	<!-- Ici c'est la colonne 2, 
+	  											l'effet appliqué est une couleur 
+												d'arriére plan jaune-->
+	</colgroup>
+	<tr>
+	  <th>Data 1</th>
+	  <th>Data 2</th>
+	</tr>
+	<tr>
+	  <td>Calcutta</td>
+	  <td>Orange</td>
+	</tr>
+	<tr>
+	  <td>Robots</td>
+	  <td>Jazz</td>
+	</tr>
+  </table>
+<!-- Si nous voulions appliquer les informations de style aux deux colonnes, nous
+devrions juste inclure un élément <col> avec un attribut span, comme ceci : -->
+<colgroup>
+	<col style="background-color: yellow" span="2" />
+</colgroup>
+<!-- Vous pouvez intituler un tableau en mettant son titre dans un élément
+<caption> et en englobant le tout dans un élément <table>. Mettez le titre
+juste après la balise ouvrante <table>.
+Note : L'attribut summary peut aussi être utilisé dans un élément <table>
+pour fournir une description — il sera lu également par les lecteurs d'écran.
+Toutefois, nous nous devons de recommander plutôt l'utilisation de l'élément
+<caption>, car summary est considéré comme obsolète par la norme HTML5, et ne
+peut être lu par l'utilisateur courant (il n'apparaît pas dans la page). -->
+<table>
+	<caption>
+		Dinosaures dans le Jurassique
+	</caption>
+	  
+	...
+</table>
+
+<!-- Ajout d'une structure avec <thead>, <tfoot>, et <tbody>
+Comme vos tableaux deviennent un peu plus structurellement complexes, il est
+utile d'en améliorer la définition. Une façon claire d'y parvenir consiste à 
+utiliser les éléments <thead>, <tfoot> et <tbody>, qui vous permettent de marquer
+l'en-tête, le pied et le corps du tableau.
+Ces éléments ne rendent pas le tableau plus accessible aux utilisateurs de lecteurs
+d'écran, et n'entraînent aucune amélioration visuelle par eux-mêmes. Ils sont
+cependant très utiles pour la présentation et la mise en page — agissant comme des
+accroches pour l'ajout des CSS. Pour vous donner quelques exemples intéressants,
+dans le cas d'un grand tableau, vous pouvez répéter l'en-tête et le pied de page sur
+chaque page imprimée ; vous pouvez prévoir l'affichage du corps sur une seule page
+et accéder au contenu par défilement vers le haut ou vers le bas.
+
+Pour les utiliser :
+
+	- L'élément --> <thead> <!-- doit couvrir la partie du tableau qui est l'en-tête — ce sera
+	en général la première ligne contenant les en-têtes de colonnes, mais pas
+	toujours. Dans le code, si vous utilisez les éléments <col>/<colgroup>,
+	l'en-tête du tableau devrait venir juste en-dessous de ceux-ci.
+	- L'élément --> <tfoot> <!-- doit envelopper la partie du tableau qui est le pied de
+	page — ce peut être une dernière ligne contenant, par exemple, la somme des
+	rangées précédentes. Vous pouvez inclure l'élément <tfoot> à la suite du code
+	contenant le corps du tableau, là où vous souhaitez le trouver, ou juste
+	en-dessous de l'élément <thead> (le navigateur l'affichera toujours en pied de
+	tableau).
+	- L'élément --> <tbody> <!-- doit couvrir toutes les parties du tableau non contenues dans
+	un <thead> ou un <tfoot>. Il pourra apparaître dans le code, sous la déclaration
+	de l'en-tête ou du pied de page, selon la façon dont vous avez décidé de le
+	structurer (voir les notes ci‑dessus).
+
+Note : <tbody> est toujours inclus dans tous les tableaux, implicitement si vous ne
+l'avez pas spécifié dans votre code. Pour le vérifier, ouvrez un tableau ne contenant
+pas l'élément <tbody> et regardez le code HTML dans les outils de développement de
+votre navigateur — vous verrez que le navigateur a ajouté cette balise pour vous.
+Si vous vous demandez pourquoi vous ennuyer à gérer ce qui est ajouté automatiquement
+— parce que cela vous donne plus de contrôle sur la structure et l'apparence de votre
+tableau.-->
+
+
+<!-- L'attribut scope -->
+<!-- Aux balises <th>, sujet de l'article précédent, ajoutons l'attribut scope. Il
+peut être mentionné dans un élément <th> pour indiquer précisément à un lecteur
+d'écran si la cellule contient un en-tête de colonne ou de ligne — par exemple,
+sommes‑nous dans un en-tête de ligne, ou de colonne ? En revenant à notre exemple
+d'enregistrement de dépenses vu dans
+/home/art0fmind/Desktop/web-projets/exo12/spending-record.html, il est possible de
+définir sans ambiguïté un en-tête de colonne comme étant un en-tête de colonne ainsi : -->
+<thead>
+	<tr>
+	  <th scope="col">Achats</th>
+	  <th scope="col">Ou&nbsp;?</th>
+	  <th scope="col">Date</th>
+	  <th scope="col">Avis</th>
+	  <th scope="col">Coût (€)</th>
+	</tr>
+</thead>
+<!-- Et chaque ligne pourrait également avoir une définition de son en-tête comme
+ceci (à condition d'avoir ajouté des en-têtes de lignes comme des en-têtes de
+colonnes) : -->
+<tr>
+	<th scope="row">Coupe de cheveux</th>
+	<td>Coiffeur</td>
+	<td>12/09</td>
+	<td>Bonne idée</td>
+	<td>30</td>
+</tr>
+<!-- Les lecteurs d'écran reconnaîtront un balisage structuré comme celui-ci et
+permettront à leurs utilisateurs de lire en une fois une colonne ou une ligne
+entière par exemple.
+scope a deux autres valeurs possibles — colgroup et rowgroup. Elles sont utilisées
+pour les en-têtes qui couvrent plusieurs colonnes ou lignes. Si vous revenez au
+tableau « Articles vendus... » au début de ce paragraphe du présent article, vous
+voyez que la cellule « Vêtements » se trouve au-dessus des cellules « Pantalons »,
+« Jupes » et « Robes ». Toutes ces cellules sont marquées comme en-têtes (<th>),
+mais « Vêtements » est un en-tête de niveau supérieur qui définit trois
+« sous-en-têtes ». « Vêtements » comportera donc un attribut scope="colgroup",
+alors que les autres recevront un attribut scope="col". -->
+
+
+
+<!-- Les attributs id et headers -->
+<!-- Une alternative à l'usage de l'attribut scope est l'utilisation des attributs
+id et headers pour créer une association entre en-têtes et cellules. Ils sont
+utilisés de la manière suivante :
+	- Vous ajoutez un identifiant unique id à chaque élément <th>.
+	- Vous ajoutez un attribut headers à chaque élément <td> .
+	Chaque attribut headers doit contenir une liste des id de
+	tous les éléments <th> qu'il contient, séparés par des espaces.
+Note : Cette méthode crée des associations très précises entre en-têtes et données
+mais elle utilise beaucoup plus de balisage et ne laisse aucune marge d'erreur.
+L'approche scope est généralement suffisante pour la plupart des tableaux.
+ -->
+ <thead>
+	<tr>
+	  <th id="purchase">Achats</th>
+	  <th id="location">Où&nbsp;?</th>
+	  <th id="date">Date</th>
+	  <th id="evaluation">Avis</th>
+	  <th id="cost">Coût (€)</th>
+	</tr>
+  </thead>
+  <tbody>
+	<tr>
+	  <th id="haircut">Coupe de cheveux</th>
+	  <td headers="location haircut">Coiffeur</td>
+	  <td headers="date haircut">12/09</td>
+	  <td headers="evaluation haircut">Bonne idée</td>
+	  <td headers="cost haircut">30</td>
+	</tr>
+  
+	...
+  </tbody>
+
+
+
+
+
+
+
+
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<!-- ------------------------------------------------------------------------- -->
+    <!--  Pour utiliser du JavaScript. L'élément <script> ne doit pas aller dans l'en-tête ; en fait, il est souvent préférable de le placer au bas du corps du document (juste avant la balise de clôture </body>), pour s'assurer que tout le contenu HTML a été lu par le navigateur avant de lui appliquer le JavaScript (si JavaScript essaie d'accéder à un élément qui n'existe pas encore, le navigateur déclenchera une erreur).
+    Au lieu de pointer vers un fichier de script externe, vous pouvez également choisir de mettre le code du script dans le HTML à l'intérieur d'un élément <script>. -->
+    <script src="mon-fichier-js.js"></script>
+  </body>
+</html>
