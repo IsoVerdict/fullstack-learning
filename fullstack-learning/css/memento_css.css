@@ -336,7 +336,445 @@ cette couleur et cette police, à moins qu'une couleur ou une police différente
 ait été appliquée directement sur ces éléments.
 L'héritage ne concerne pas toutes les propriétés. Ainsi, si on fixe width à 50% sur
 un élément, cela ne signifie pas que tous ses descendants auront une largeur égale
-à 50% de celle de leur parent. Si c'était le cas, CSS serait inutilement complexe. */
+à 50% de celle de leur parent. Si c'était le cas, CSS serait inutilement complexe.
+
+Contrôler l'héritage
+CSS fournit 5 valeurs spéciales et universelles pour les propriétés afin de
+contrôler l'héritage. Ainsi, chaque propriété CSS acceptera ces valeurs :
+
+    inherit
+    Applique la valeur de l'élément parent sur l'élément ciblé. Cela « force »
+    l'héritage.
+
+    initial
+    Applique la valeur initiale de la propriété sur l'élément ciblé.
+
+    revert
+    Réinitialise la valeur de la propriété de l'élément ciblé avec la mise en forme
+    par défaut du navigateur. Cette valeur agit comme unset dans la plupart des cas.
+
+    revert-layer
+    Réinitialise la valeur de la propriété de l'élément ciblé avec celle établie
+    dans une couche de cascade précédente.
+
+    unset
+    Réinitialise la propriété avec sa valeur naturelle. Autrement dit, si la
+    propriété est naturellement héritée, ce mot-clé sera synonyme de inherit,
+    sinon, il sera synonyme de initial.
+
+Utilisons un exemple avec une liste de liens pour observer comment ces valeurs
+fonctionnent.
+Dans notre exemple :
+
+    Le deuxième élément de la liste a la classe my-class-1. La couleur de l'élément
+    <a> qui y est imbriqué est donc fixée avec inherit. Si vous retirez la règle,
+    quel effet cela a-t-il sur la couleur du lien ?
+    
+    Comprenez-vous pourquoi les troisième et quatrième liens ont cette couleur ? Le
+    troisième lien utilise la valeur initial et c'est donc la valeur initiale de la
+    propriété (ici le noir) et non la valeur par défaut du navigateur (le bleu) qui
+    est utilisée. Pour le quatrième, on utilise unset, ce qui signifie que le texte
+    du lien utilise la couleur de l'élément parent : vert.
+
+    Lequel de ces liens changera de couleur si vous ciblez les liens pour y définir
+    une couleur a { color: red; } ?
+
+    Après avoir lu la section qui suit, revenez à cet exemple et renommez la
+    propriété color en all. Voyez comment le deuxième lien passe à la ligne et est
+    précédé d'une puce. D'après vous, quelles propriétés étaient héritées ?
+
+css                             html  */
+body {                          <ul>
+  color: green;                   <li>Default <a href="#">link</a> color</li>
+}                                 <li class="my-class-1">Inherit the <a 
+                                  href="#">link</a> color</li>
+.my-class-1 a {                   <li class="my-class-2">Reset the <a 
+  color: inherit;                 href="#">link</a> color</li>
+}                                 <li class="my-class-3">Unset the <a 
+                                  href="#">link</a> color</li>
+.my-class-2 a {                 </ul>
+  color: initial;
+}
+
+.my-class-3 a {
+  color: unset;
+}
+
+a {
+  all: inherit;
+}
+
+/* Réinitialiser les valeurs de toutes les propriétés
+La propriété CSS raccourcie all peut être utilisée afin d'appliquer une valeur
+d'héritage à (presque) toutes les propriétés. Cette propriété peut utiliser l'une
+des 5 valeurs d'héritage vues avant (inherit, initial, revert, revert-layer, ou
+unset). Il s'agit d'une méthode pratique pour annuler les modifications appliquées
+à des mises en forme et revenir à un point de départ connu avant d'appliquer
+d'autres modifications.
+Dans l'exemple qui suit, on a deux blocs de citation. Le premier est mis en forme
+avec une règle qui cible l'élément. Le second est mis en forme via une classe
+appliquée à l'élément et qui définit la propriété all avec la valeur unset. Essayez
+de changer la valeur de all en utilisant les autres valeurs d'héritage pour voir
+les différences.
+
+css                                 html  */
+
+blockquote {                        <blockquote>
+  background-color: orange;           <p>This blockquote is styled</p>
+  border: 2px solid blue;           </blockquote>
+}
+                                    <blockquote class="fix-this">
+.fix-this {                           <p>This blockquote is not styled</p>
+  all: initial;                     </blockquote>
+}
+
+
+/* Comprendre la cascade
+Il existe trois facteurs à prendre en compte. L'ordre des sources, la spécificité et
+l'importance.
+
+Ordre du code source:
+S'il y a plus d'une règle et que toutes ont le même poids (c'est à dire la même
+spécificité), c'est celle qui arrive en dernier dans le code source qui l'emporte.
+On peut reformuler ceci de la façon suivante : c'est la règle qui est la plus proche
+de l'élément qui l'emporte et annule les précédentes.
+
+Comprendre la spécificité:
+Vous rencontrerez parfois une situation où ce n'est pas la dernière règle portant
+sur une propriété qui s'applique mais une règle conflictuelle et antérieure. Cela
+se produit, car la règle antérieure possède une spécificité antérieure : elle est
+plus spécifique et est donc choisie par le navigateur pour mettre en forme
+l'élément. On notera cependant que ce n'est pas la règle entière qui est remplacée
+mais bien uniquement les propriétés qui sont déclarées à plusieurs endroits.
+Ce comportement permet d'éviter les répétitions dans les feuilles de style.
+La pratique usuelle consiste à définir des styles génériques pour les éléments de
+base, puis de créer des classes pour les éléments qui sont différents. Ainsi, dans
+la feuille de styles qui suit, on a défini des styles génériques pour les titres de
+niveau 2, puis créé des classes qui ne changent que certaines propriétés et valeurs.
+Les valeurs définies initialement sont appliquées pour tous les titres, puis les
+valeurs plus spécifiques sont appliquées aux titres avec les classes. 
+
+css                                 html  */
+
+h2 {                                <h2>Heading with no class</h2>
+  font-size: 2em;                   <h2 class="small">Heading with class of small</h2>
+  color: #000;                      <h2 class="bright">Heading with class of bright</h2>
+  font-family: Georgia,
+  'Times New Roman', Times, serif;
+}
+
+.small {
+  font-size: 1em;
+}
+
+.bright {
+  color: rebeccapurple;
+}
+/* Voyons désormais comment le navigateur calcule la spécificité d'un sélecteur.
+Nous savons déjà qu'un sélecteur d'élément possède une spécificité inférieure à
+celle d'un sélecteur de classe. La spécificité est une valeur en points, associée à
+chaque type de sélecteur et la somme de ces poids fournit la spécificité d'un
+sélecteur composite donné. Cette mesure peut alors comparer aux autres.
+La spécificité d'un sélecteur est mesurée selon 3 composantes différentes, qu'on
+peut voir comme des colonnes de centaines, dizaines et unités qui correspondent
+respectivement aux :
+
+    Identifiant
+    On marque un point dans cette colonne pour chaque sélecteur d'identifiant
+    contenu dans le sélecteur composite.
+
+    Classe
+    On marque un point dans cette colonne pour chaque sélecteur de classe,
+    d'attribut ou de pseudo-classe contenu dans le sélecteur composite.
+
+    Élément
+    On marque un point dans cette colonne pour chaque sélecteur d'élément ou de
+    pseudo-élément contenu dans le sélecteur composite.
+
+Note : Le sélecteur universel (*), les combinateurs (+, >, ~, ' '), et le sélecteur
+d'ajustement de spécificité (:where()) et ses paramètres n'ont pas d'effet sur la
+spécificité.
+Les pseudo-classes de négation (:not()), de sélection relationnelle (:has()), et de
+correspondance (:is()) n'ont pas d'effet par elles-mêmes sur la spécificité, ce sont
+leurs paramètres qui ont un impact. La contribution à la spécificité du sélecteur de
+chacune de ses pseudo-classes est égale à la spécificité la plus grande parmi les
+paramètres qui lui sont passés.
+Le tableau qui suit illustre quelques exemples pour une approche plus concrète.
+N'hésitez pas à les décomposer et assurez vous de bien comprendre la spécificité
+obtenue. Nous n'avons pas encore abordé tous les sélecteurs en détails, mais vous
+pourrez trouver leurs documentations respectives sur MDN au sein de la référence
+des sélecteurs.
+
+Sélecteur                       Identifiants	Classes	Éléments	Spécificité
+                                                                totale
+
+h1	                            0	            0	      1	        0-0-1
+
+h1 + p::first-letter            0	            0	      3	        0-0-3
+
+li > a[href*="en-US"] >         0	            2	      2	        0-2-2
+.inline-warning
+
+#identifier	                    1	            0	      0	        1-0-0
+
+button:not(#mainBtn, .cta)	    1	            0	      1	        1-0-1
+
+Avant d'aller plus loin, étudions un exemple: 
+
+css                                 html  */
+/* 1. specificity: 1-0-1 */
+#outer a {                          <div id="outer" class="container">
+  background-color: red;              <div id="inner" class="container">
+}                                       <ul>
+                                          <li class="nav"><a href="#">One</a></li>  
+/* 2. specificity: 2-0-1 */               <li class="nav"><a href="#">Two</a></li>
+#outer #inner a {                       </ul>
+  background-color: blue;             </div>
+}                                   </div>
+
+/* 3. specificity: 1-0-4 */
+#outer div ul li a {
+  color: yellow;
+}
+
+/* 4. specificity: 1-1-3 */
+#outer div ul .nav a {
+  color: white;
+}
+
+/* 5. specificity: 0-2-4 */
+div div li:nth-child(2) a:hover {
+  border: 10px solid black;
+}
+
+/* 6. specificity: 0-2-3 */
+div li:nth-child(2) a:hover {
+  border: 10px dashed black;
+}
+
+/* 7. specificity: 0-3-3 */
+div div .nav:nth-child(2) a:hover {
+  border: 10px double black;
+}
+
+a {
+  display: inline-block;
+  line-height: 40px;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+/* Que se passe-t-il ici ? Pour commencer, nous ne nous intéressons qu'aux sept
+premières règles de l'exemple. Vous pouvez voir que nous avons inclus les valeurs
+des spécificités dans un commentaire avant chaque règle.
+    
+    Les deux premiers sélecteurs sont en compétition pour la couleur d'arrière-plan
+    du lien. C'est le second qui l'emporte et qui donne la couleur bleue, car il
+    possède un sélecteur d'identifiant supplémentaire. Sa spécificité vaut donc
+    2-0-1 alors que celle du premier sélecteur vaut 1-0-1.
+    
+    Les troisième et quatrième sélecteurs sont en compétition pour la couleur du
+    texte du lien. C'est le quatrième qui l'emporte et qui donne un texte blanc. En
+    effet, bien qu'il ait un sélecteur d'élément en moins, celui-ci est remplacé par
+    un sélecteur de classe, qui possède une spécificité plus élevée que n'importe
+    quelle combinaison de sélecteurs d'élément. La spécificité 1-1-3 l'emporte sur
+    la spécificité 1-0-4.
+    
+    Les trois derniers sélecteurs portent sur la mise en forme de la bordure du lien
+    au survol. Le sixième sélecteur cède la place au cinquième (avec des spécificités
+    respectives de 0-2-3 et 0-2-4), car il a un sélecteur d'élément en moins. Le
+    septième sélecteur l'emporte sur ces deux autres, car il a le même nombre de
+    sous-sélecteurs que le cinquième et qu'un sélecteur d'élément a été remplacé par
+    un sélecteur de classe. La spécificité 0-3-3 l'emporte donc sur les spécificités
+    0-2-3 et 0-2-4.
+
+Styles en incise dans le document
+Les styles en incise du document (c'est-à-dire les déclarations de style présentes
+dans les attributs style) l'emportent sur toutes les règles déclarées dans les
+feuilles de style, quelle que soit leur spécificité. De telles déclarations
+n'utilisent pas de sélecteurs, mais on peut considérer leur spécificité comme
+1-0-0-0, l'emportant ainsi toujours sur toute autre spécificité, quel que soit le
+nombre d'identifiants dans le sélecteur composite. */
+
+/* !important
+Il existe une méthode permettant de passer outre toutes ces règles, y compris les
+styles en incise : !important. Toutefois, il faut faire preuve de prudence en
+l'utilisant. Ce marqueur permet de rendre une paire de propriété/valeur la plus
+spécifique, outrepassant les règles normales de la cascade, y compris pour les
+styles indiqués dans le document.
+
+Attention : Il est utile de savoir que le marqueur !important existe afin de
+comprendre son effet lorsqu'on le voit dans des bases de code. Toutefois, il est
+fortement recommandé de ne pas l'utiliser sauf en cas d'extrême nécessité. Le marqueur
+!important change la façon dont la cascade fonctionne et peut largement complexifier
+le débogage de problèmes CSS, notamment pour les grandes feuilles de style.
+
+Prenons un exemple où nous avons deux paragraphes, dont un qui porte un identifiant.
+
+css                             html */
+
+#winning {                      <p class="better">This is a paragraph.</p>
+  background-color: red;        <p class="better" id="winning">One selector to
+  border: 5px solid black;      rule them all!</p>
+}
+
+.better {
+  background-color: gray;
+  border: none !important;
+}
+
+p {
+  background-color: blue;
+  color: white;
+  padding: 5px;
+}
+
+/* Voyons ce qui se passe ici (vous pouvez retirer certaines des propriétés et
+observer ce qui se produit si vous ne comprenez pas de prime abord) :
+
+Vous pouvez voir que les valeurs de color et padding ont été appliquées avec la
+troisième règle mais que ce n'est pas le cas de background-color. Pourquoi ça ? Les
+trois déclarations devraient s'appliquer, car elles arrivent après dans l'ordre du
+code source, l'emportant ainsi sur les règles précédentes.
+
+Toutefois, ce sont les règles précédentes qui l'emportent avec les sélecteurs de
+classe qui ont une spécificité supérieure aux sélecteurs d'éléments.
+
+Les deux éléments ont une classe better, et le second porte en plus l'identifiant
+winning. Comme les identifiants ont une spécificité toujours supérieure à celle des
+classes (on peut uniquement avoir un seul élément avec un identifiant donné sur une
+page, mais de nombreux éléments peuvent se partager une même classe), l'arrière-plan
+rouge et la bordure noire de 1 pixel devraient s'appliquer au second élément et le
+premier devrait avoir un arrière-plan gris sans bordure, tel qu'indiqué par la classe.
+
+En réalité, le second élément récupère bien l'arrière-plan rouge, mais pas la 
+bordure ? Pourquoi ? C'est l'effet du marqueur !important dans la deuxième règle.
+Ajouter !important après border: none signifie que cette déclaration l'emportera sur
+toutes les valeurs de border des règles précédentes, même si le sélecteur
+d'identifiant possède une spécificité supérieure.
+
+Note : La seule façon de surcharger une déclaration importante est d'inclure une
+autre déclaration importante avec la même spécificité plus tard dans le code source,
+ou d'en placer une avec une spécificité supérieure, ou d'inclure une déclaration
+importante dans une couche de cascade antérieure (nous n'avons pas encore abordé le
+sujet des couches de cascade). */
+
+/* Impact de l'emplacement
+Enfin, il faut noter que la précédence d'une déclaration CSS dépend de la feuille de
+styles et de la couche de cascade de laquelle elle provient.
+Les personnes peuvent utiliser des feuilles de styles personnalisées qui
+l'emporteront sur les styles indiqués par le site. Ainsi, une personne avec un
+handicap visuel pourra utiliser une taille de caractère deux fois plus grande pour
+toutes les pages web qu'elle visite afin d'en faciliter la lecture.
+Il est également possible de déclarer les styles d'un site dans des couches de
+cascades. Les styles qui ne sont pas dans des couches l'emporteront sur ceux qui sont
+déclarés dans des couches et les styles déclarés dans les couches ultérieures
+l'emporteront sur les styles des couches antérieures. Par exemple, lorsqu'on
+développe, on voudra éviter d'éditer une feuille de style tierce. Pour éviter cela,
+on pourra importer cette feuille de styles externe dans une couche de cascade afin
+que les styles qu'on gère l'emporte sur ceux qui sont importés, sans se soucier de
+la spécificité des sélecteurs tiers.
+
+Ordre des déclarations
+Les déclarations conflictuelles seront appliquées dans l'ordre suivant. Celles qui
+arrivant après dans la liste l'emporteront sur les éléments antérieurs :
+
+    Les déclarations des feuilles de style du navigateur (c'est-à-dire la mise en
+    forme par défaut du navigateur, en l'absence de toute autre mise en forme).
+
+    Les déclarations normales des feuilles de styles de l'utilisatrice ou de
+    l'utilisateur (les styles personnalisés, propres à chaque personne).
+
+    Les déclarations normales des feuilles de styles du site (écrites par les équipes
+    de développement web).
+
+    Les déclarations importantes des feuilles de styles du site.
+
+    Les déclarations importantes des feuilles de styles de l'utilisatrice ou de
+    l'utilisateur.
+
+    Les déclarations importantes des feuilles de style du navigateur.
+
+Note : L'ordre de précédence est inversé pour les styles marqués avec !important. En
+effet, les équipes de développement web pourraient vouloir surcharger les feuilles de
+styles des personnes afin de s'assurer qu'un design fonctionne correctement.
+Toutefois, les personnes peuvent avoir de bonnes raisons de surcharger ces styles
+provenant du site et peuvent le faire à l'aide de !important dans leurs règles. */
+
+/* Ordre des couches de cascade
+Les couches de cascade constituent un sujet avancé qui ne vous sera peut-être pas
+utile immédiatement. Toutefois, il est important de comprendre comment les
+différentes couches forment une cascade.
+Lorsqu'on déclare du CSS dans des couches de cascade, la précédence est déterminée
+par l'ordre de déclaration des couches. Les styles CSS déclarés en dehors des couches
+sont combinés ensemble, selon leur ordre de déclaration, dans une couche anonyme,
+agissant comme la dernière couche déclarée. Lorsqu'il y a conflit entre des styles
+normaux (et pas importants), ce sont les couches ultérieures qui l'emportent sur les
+couches antérieures. Pour les styles importants (marqués avec !important), cet ordre
+est inversé et ce sont les styles importants des couches antérieures qui l'emportent
+sur les styles importants des couches ultérieures ou des styles de la couche anonyme.
+Les styles en incise dans le document l'emportent sur n'importe quel style du site,
+quelle que soit la couche.
+Lorsque plusieurs blocs de style, appartenant à différentes couches, sont en conflit
+pour définir la valeur d'une propriété pour un élément donné, c'est la couche où sont
+déclarés les styles qui détermine la précédence. La spécificité entre les couches
+n'a pas d'importance, seule la spécificité au sein de la couche utilisée aura un
+rôle à jouer. 
+
+css                                         html */
+
+@layer firstLayer, secondLayer;         <p id="addSpecificity">
+                                          A paragraph with a border and background
+p { /* 0-0-1 */                         </p>
+  background-color: red;
+  color: grey !important;
+  border: 5px inset purple;
+}
+p#addSpecificity { /* 1-0-1 */
+  border-style: solid !important;
+}
+
+@layer firstLayer {
+  #addSpecificity { /* 1-0-0 */
+    background-color: blue;
+    color: white !important;
+    border-width: 5px;
+    border-style: dashed !important;
+  }
+}
+
+@layer secondLayer {
+  p#addSpecificity { /* 1-0-1 */
+    background-color: green;
+    color: orange !important;
+    border-width: 10px;
+    border-style: dotted !important;
+  }
+}
+/* Voyons quelques choses à propos de l'exemple qui précède. Deux couches ont été
+déclarées, firstLayer et secondLayer, dans cet ordre. Bien que la spécificité de
+secondLayer soit plus élevée, aucune propriété de cette déclaration n'est utilisée.
+En effet, les styles normaux qui ne sont pas dans des couches l'emportent sur les
+styles présents dans des couches, quelle que soit la spécificité. Les styles
+importants présents dans des couches l'emportent sur les styles importants des
+couches ultérieures, quelle que soit la spécificité.
+Si vous changez la première ligne du CSS de cet exemple par @layer secondLayer,
+firstLayer;, cela changera l'ordre de déclaration des couches et les styles
+importants de firstLayer seront changés avec les valeurs respectives provenant de
+secondLayer. */
+
+
+
 
 
 /* Quelques propriétés 
