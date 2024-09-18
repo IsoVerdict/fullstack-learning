@@ -151,7 +151,7 @@ li em {
 Ce sont uniquement les éléments <selecteur2> qui viennent immédiatement après un
 élément <selecteur1>.
 Le sélecteur selecteur1 + selecteu2 cible spécifiquement le premier élément
-<selecteur2> qui suit directement un <h1>, sans autre élément HTML entre les deux.
+<selecteur2> qui suit directement un <selecteur1>, sans autre élément HTML entre les deux.
 Si un autre élément (comme une image, une liste, ect... ) se trouve entre le
 <selecteur1> et le <selecteur2>, ce sélecteur ne s'appliquera pas.*/
 selecteur1 + selecteu2 {
